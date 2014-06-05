@@ -1,49 +1,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>推书单 - 首页</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  <!-- modernizr enables HTML5 elements and feature detects -->
-  <script type="text/javascript" src="/js/modernizr-1.5.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>推书单</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/css/basic.css" />
+<?php
+if($this->css)
+{
+  echo '<link rel="stylesheet" type="text/css" href="/css/'. $this->css .'.css" />';
+}
+?>
+<script type="text/javascript" src="/js/jquery.js"></script>
 </head>
-
 <body>
-  <div id="main">
-    <header>
-      <div id="logo">
-        <div id="logo_text">
-          <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">web<span class="logo_colour">_dev</span></a></h1>
-          <h2>Simple. Contemporary. Website Template.</h2>
-        </div>
-        <form method="post" action="#" id="search">
-          <input class="search" type="text" name="search_field" value="search....." onclick="javascript: document.forms['search'].search_field.value=''" />
-          <input name="search" type="image" style="float: right;border: 0; margin: 20px 0 0 0;" src="/images/search.png" alt="search" title="search" />
-        </form>
-      </div>
-      <nav>
-        <ul class="sf-menu" id="nav">
-          <li class="current"><a href="/">Home</a></li>
-        </ul>
-      </nav>
-    </header>
-    <?php echo $content?>
-    <footer>
-      <p><a href="index.html">Home</a> | <a href="examples.html">Examples</a></p>
-      <p>Copyright &copy; CSS3 | <a href="http://www.cssmoban.com">关于我们</a></p>
-    </footer>
-  </div>
-  <!-- javascript at the bottom for fast page loading -->
-  <script type="text/javascript" src="/js/jquery.js"></script>
-  <script type="text/javascript" src="/js/jquery.easing-sooper.js"></script>
-  <script type="text/javascript" src="/js/jquery.sooperfish.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('ul.sf-menu').sooperfish();
-    });
-  </script>
+
+<div id="header">
+  <h1><a href="/">推书单</a></h1>
+  <ul>
+    <li><a href="/">首页</a></li>
+    <?php
+    if($this->userinfo)
+    {
+      echo '<li><a href="/mine.html">'. $this->userinfo->username .'·个人中心</a></li>
+      <li><a href="#" id="login_out">退出</a></li>';
+    }
+    else
+    {
+      echo '<li><a href="/login.html">登录</a></li>
+      <li><a href="/register.html">注册</a></li>';
+    }
+    ?>
+  </ul>
+</div>
+<?php echo $content?>
+<div id="footer">
+  <p>本程序执行耗时为: 0.003秒</p>
+</div>
+<script type="text/javascript">
+// 退出
+$("#login_out").click(function() {
+  $.getJSON('/login_out.html?callback=?', null, function(json) {
+    window.location.href = json.refer;
+  });
+});
+</script>
+
+<?php
+if($this->js)
+{
+  echo '<script type="text/javascript" src="/js/'. $this->js .'.js"></script>';
+}
+?>
 </body>
 </html>

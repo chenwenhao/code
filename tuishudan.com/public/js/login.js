@@ -1,11 +1,11 @@
 $(document).ready(function() {
-	$("#login").click(function() {
+	$("#login_button").click(function() {
 		var form_data = $("#form_login").serialize();
 		$.getJSON('/member/login_submit?callback=?', form_data, function(json) {
 				if(json.status == true)
 				{
 					alert('登录成功');
-					window.location.href = '/';
+					window.location.href = '/mine.html';
 				}
 				else
 				{

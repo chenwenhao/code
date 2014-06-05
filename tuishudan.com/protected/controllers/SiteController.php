@@ -12,6 +12,7 @@ class SiteController extends MyController
 	{
 		$data = array();
 
-		$this->renderPartial('index', $data);
+		$this->css = 'index';
+		$this->render('index', $data);
 	}
 }
