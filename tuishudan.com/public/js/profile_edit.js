@@ -18,6 +18,6 @@ $(document).ready(function() {
 
 	// 上传图像
 	$("#avatar_upload").click(function() {
-		window.open('/avatar_upload/index.html', 'avatar_upload', 'width=750, height=700, top=0, left=0, scrollbars=1');
+		window.open('/avatar_upload/index.html', 'avatar_upload', 'width=700, height=500, top=0, left=0, scrollbars=1');
 	});
 });

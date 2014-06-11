@@ -24,7 +24,11 @@ function uploadevent(status,picUrl,callbackdata)
       var pic_url_arr = new Array();
       pic_url_arr = picUrl.split(',');
 
-      opener.document.getElementById('avatar_pre').innerHTML = "<input type=\"radio\" name=\"avatar\" value="+pic_url_arr[0]+" />头像1 : <img src='"+pic_url_arr[0]+"?" + time + "'/> <br/> <input type=\"radio\" name=\"avatar\" value="+pic_url_arr[1]+" />头像2: <img src='"+pic_url_arr[1]+"?" + time + "'/><br/> <input type=\"radio\" name=\"avatar\" value="+pic_url_arr[2]+" />头像3: <img src='"+pic_url_arr[2]+"?" + time + "'/>" ;
+      //opener.document.getElementById('avatar_pre').innerHTML = "<input type=\"radio\" name=\"avatar\" value="+pic_url_arr[0]+" />头像1 : <img src='"+pic_url_arr[0]+"?" + time + "'/> <br/> <input type=\"radio\" name=\"avatar\" value="+pic_url_arr[1]+" />头像2: <img src='"+pic_url_arr[1]+"?" + time + "'/><br/> <input type=\"radio\" name=\"avatar\" value="+pic_url_arr[2]+" />头像3: <img src='"+pic_url_arr[2]+"?" + time + "'/>" ;
+      
+      opener.document.getElementById('avatar_pre').innerHTML = "<img src='"+pic_url_arr[0]+"?" + time + "'/><img src='"+pic_url_arr[1]+"?" + time + "'/><img src='"+pic_url_arr[2]+"?" + time + "'/>" ;
+
+      opener.document.getElementById('avatar').value = pic_url_arr;
 
       window.close();
     break;

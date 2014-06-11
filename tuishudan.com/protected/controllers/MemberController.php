@@ -195,6 +195,7 @@ class MemberController extends MyController
 		$password = Yii::app()->request->getParam('password');
 		$email = trim(Yii::app()->request->getParam('email'));
 		$avatar = trim(Yii::app()->request->getParam('avatar'));
+		$name = trim(Yii::app()->request->getParam('name'));
 
 		$row = User::model()->findByPk($user_id);
 		if(!$row)
@@ -221,6 +222,7 @@ class MemberController extends MyController
 			$avatar = $row->avatar;
 		}
 
+		$row->name = $name;
 		$row->password = $password;
 		$row->email = $email;
 		$row->avatar = $avatar;
