@@ -119,6 +119,7 @@ class MemberController extends MyController
 	{
 		// 参数
 		$username = trim(Yii::app()->request->getParam('username'));
+		$email = trim(Yii::app()->request->getParam('email'));
 		$password = Yii::app()->request->getParam('password');
 
 		if(!$username)

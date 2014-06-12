@@ -15,6 +15,12 @@ class MyController extends CController
 		parent::init();
 		
 		self::getUserinfo(); // 当然用户登录信息
+
+		// 查询顶级分类
+		$cdb = new CDbCriteria();
+		$cdb->condition = "parent_id = 0";
+		$cdb->order = "id ASC";
+		$this->nav_menu = Content_category::model()->findAll($cdb);
 	}
 
 	/**
