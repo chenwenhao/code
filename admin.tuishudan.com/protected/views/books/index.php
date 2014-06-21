@@ -1,6 +1,8 @@
 <form id="pagerForm" method="post" action="<?php echo Yii::app()->request->requestUri?>">
   <input type="hidden" name="pageNum" value="<?php echo $pages->currentPage + 1?>"/>
   <input type="hidden" name="category_id" value="<?php echo $category_id?>"/>
+  <input type="hidden" name="name" value="<?php echo $name?>"/>
+  <input type="hidden" name="author" value="<?php echo $author?>"/>
 </form>
 <div class="page">
   <div class="pageContent">
@@ -11,8 +13,12 @@
           <table class="searchContent">
             <tbody>
               <tr>
-                <td>标题：
-                  <input type="text" name="title" class="textInput" value="<?php echo $title?>"></td>
+                <td>书名：
+                  <input type="text" name="name" class="textInput" value="<?php echo $name?>">
+                </td>
+                <td>作者：
+                  <input type="text" name="author" class="textInput" value="<?php echo $author?>">
+                </td>
                 <td><div class="subBar">
                     <ul>
                       <li>
@@ -35,7 +41,7 @@
     <div class="panelBar">
       <ul class="toolBar">
         <li>
-          <a target="navTab" href="/content/add?category_id=<?php echo $category_id?>" class="add">
+          <a target="dialog" href="/books/add" class="add" height="500">
             <span>添加</span>
           </a>
         </li>
@@ -46,15 +52,16 @@
       <thead>
         <tr>
           <th width="50">ID</th>
-          <th>标题</th>
-          <th>所属分类</th>
-          <th>排序ID</th>
-          <th>图片</th>
-          <th>链接</th>
-          <th>提交时间</th>
-          <th>扩展信息</th>
-          <th>文件目录</th>
-          <th>文件名</th>
+          <th>书名</th>
+          <th>作者</th>
+          <th>封面图</th>
+          <th>来源</th>
+          <th>状态</th>
+          <th>标签</th>
+          <th>评论数</th>
+          <th>是否审核</th>
+          <th>添加时间</th>
+          <th>添加人</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -62,41 +69,26 @@
         <?php foreach($rows as $row):?>
         <tr target="id" rel="<?php echo $row->id?>">
           <td><?php echo $row->id?></td>
-          <td><a target="navTab" href="/content/edit?id=<?php echo $row->id?>&category_id=<?php echo $category_id?>" title="<?php echo strip_tags($row->content);?>"><?php echo $row->title?></a></td>
-          <td><?php echo $row->category->name?></td>
-          <td><?php echo $row->order_id?></td>
+          <td><a width="500" target="dialog" href="/books/edit?id=<?php echo $row->id?>" name="<?php echo strip_tags($row->name);?>"><?php echo $row->name?></a></td>
+          <td><?php echo $row->author?></td>
           <td>
-            <?php if($row->photo)
+            <?php
+            if($row->cover_img)
             {
-              echo '<img src="' .$row->photo. '" width="100" height="50" />';
-            }?>
-          </td>
-          <td><?php echo $row->link?></td>
-          <td><?php echo $row->submit_time?></td>
-          <td>
-            <?php 
-            $ext = MyContentCategory::getContent_ext($row->id);
-            if($ext)
-            {
-              foreach($ext as $e)
-              {
-                echo $e->ext_name . '：' . $e->ext_value . ' | ';
-              }
+              echo '<a href="'. Yii::app()->params['cover_img_url'] . $row->cover_img .'" target="_blank"><img src="'. Yii::app()->params['cover_img_url'] . $row->cover_img .'" width="100" height="50" /></a>';
             }
             ?>
           </td>
-          <td><?php if(isset($row->category->file_dir))echo $row->category->file_dir?></td>
-          <td><?php echo $row->file_name?></td>
+          <td><?php echo $row->from?></td>
+          <td><?php echo $row->status?></td>
+          <td><?php echo $row->tag?></td>
+          <td><?php echo $row->comment_times?></td>
+          <td><?php if($row->checked){echo '是';}else{echo '<span style="color:red;">否</span>';}?></td>
+          <td><?php echo $row->create_time?></td>
+          <td><?php echo $row->uid?></td>
           <td>
-            <a target="navTab" href="/content/edit?id=<?php echo $row->id?>&category_id=<?php echo $category_id?>">修改</a>
-            <a target="ajaxToDo" href="/content/delete?id=<?php echo $row->id?>" title="确定删除吗？">删除</a>
-            <?php if(isset($row->category->is_create_file) && $row->category->is_create_file):?>
-            <?php if(file_exists(ROOT.$row->category->file_dir.$row->file_name) && $row->file_name):?>
-            <a target="ajaxToDo" href="/content/create_file?id=<?php echo $row->id?>" title="确定重新生成文件吗？"><span style="line-height:22px;color:green;">已生成</span></a>
-            <?php else:?>
-            <a target="ajaxToDo" href="/content/create_file?id=<?php echo $row->id?>" title="确定生成文件吗？">生成文件</a>
-            <?php endif;?>
-            <?php endif;?>
+            <a target="dialog" href="/books/edit?id=<?php echo $row->id?>" width="500">修改</a>
+            <a target="ajaxToDo" href="/books/delete?id=<?php echo $row->id?>" name="确定删除吗？">删除</a>
           </td>
         </tr>
         <?php endforeach;?>
