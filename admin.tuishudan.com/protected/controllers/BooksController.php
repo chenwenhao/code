@@ -205,4 +205,22 @@ class BooksController extends Controller
 		$data = array('categorys' => $categorys, 'row' => $row);
 		$this->renderPartial('edit', $data);
 	}
+
+	/**
+	 * 删除书本
+	 */
+	public function actionDelete()
+	{
+		// 参数
+		$id = intval(Yii::app()->request->getParam('id'));
+
+		$row = Books::model()->findByPk($id);
+
+		if (! $row || ! $id) {
+			$this->alert_error('书本不存在');
+		}
+
+		$row->delete();
+		$this->alert_ok();
+	}
 }

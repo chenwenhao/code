@@ -138,6 +138,7 @@ class Books_categoryController extends Controller
 	{
 		// 参数
 		$id = intval(Yii::app()->request->getParam('id'));
+		$category_id = intval(Yii::app()->request->getParam('category_id'));
 
 		$row = Books_category::model()->findByPk($id);
 		if(!$row || !$id)
@@ -146,6 +147,14 @@ class Books_categoryController extends Controller
 		}
 		else
 		{
+			// 查询分类下是否有书
+			$cdb = new CDbCriteria();
+			$cdb->condition = "category_id = " . $category_id;
+			$books = Books::model()->find($cdb);
+			if ($books) {
+				$this->alert_error('分类下还有书本不能删除');
+			}
+			
 			if($row->delete())
 			{
 				$this->alert_ok();
