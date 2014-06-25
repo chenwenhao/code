@@ -1,0 +1,4 @@
+#!C:\xampp\php\php.exe
+<?php
+
+require_once(dirname(__FILE__).'/yiic.php');

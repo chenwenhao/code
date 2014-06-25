@@ -6,8 +6,7 @@ header('P3P: CP=CAO PSA OUR');
 date_default_timezone_set('Asia/Shanghai');
 
 // 调试模式，在生产环境中请删除此行
-if($_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == 'localhost')
-	defined('YII_DEBUG') or define('YII_DEBUG', TRUE);
+defined('YII_DEBUG') or define('YII_DEBUG', TRUE);
 
 if(defined('YII_DEBUG') && YII_DEBUG)
 {

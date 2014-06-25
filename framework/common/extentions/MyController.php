@@ -233,4 +233,52 @@ class MyController extends CController
 		}
 		return $arr;
 	}
+
+	public static function get_url($url,$ispost = FALSE,$post_data=null)
+    {
+        //启动一个CURL会话
+        $ch = curl_init();
+
+        // 要访问的地址
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        // 对认证证书来源的检查，0表示阻止对证书的合法性的检查。
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+        // 从证书中检查SSL加密算法是否存在
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+
+        //模拟用户使用的浏览器，在HTTP请求中包含一个”user-agent”头的字符串。
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+
+        //发送一个常规的POST请求，类型为：application/x-www-form-urlencoded，就像表单提交的一样。
+        if ($ispost)
+        {
+            curl_setopt($ch, CURLOPT_POST, 1);
+            //要传送的所有数据，如果要传送一个文件，需要一个@开头的文件名
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        }
+
+        
+
+        //连接关闭以后，存放cookie信息的文件名称
+        #curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
+
+        // 包含cookie信息的文件名称，这个cookie文件可以是Netscape格式或者HTTP风格的header信息。
+        #curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
+
+        // 设置curl允许执行的最长秒数
+        //curl_setopt($ch, CURLOPT_TIMEOUT, 6);
+
+        // 获取的信息以文件流的形式返回，而不是直接输出。
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+
+        // 执行操作
+        $result = curl_exec($ch);
+        $httpcode = curl_getinfo($ch,CURLINFO_HTTP_CODE);
+
+        // 关闭CURL会话
+        curl_close($ch);
+        return array('code'=>$httpcode,'content'=>$result);
+    }
 }

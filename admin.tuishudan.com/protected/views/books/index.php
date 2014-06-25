@@ -69,7 +69,7 @@
         <?php foreach($rows as $row):?>
         <tr target="id" rel="<?php echo $row->id?>">
           <td><?php echo $row->id?></td>
-          <td><a width="500" target="dialog" href="/books/edit?id=<?php echo $row->id?>" name="<?php echo strip_tags($row->name);?>"><?php echo $row->name?></a></td>
+          <td><a height="500" target="dialog" href="/books/edit?id=<?php echo $row->id?>" name="<?php echo strip_tags($row->name);?>"><?php echo $row->name?></a></td>
           <td><?php echo $row->author?></td>
           <td>
             <?php
@@ -87,7 +87,7 @@
           <td><?php echo $row->create_time?></td>
           <td><?php echo $row->uid?></td>
           <td>
-            <a target="dialog" href="/books/edit?id=<?php echo $row->id?>" width="500">修改</a>
+            <a target="dialog" href="/books/edit?id=<?php echo $row->id?>" height="500">修改</a>
             <a target="ajaxToDo" href="/books/delete?id=<?php echo $row->id?>" name="确定删除吗？">删除</a>
           </td>
         </tr>
