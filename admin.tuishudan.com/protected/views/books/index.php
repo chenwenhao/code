@@ -1,6 +1,5 @@
 <form id="pagerForm" method="post" action="<?php echo Yii::app()->request->requestUri?>">
   <input type="hidden" name="pageNum" value="<?php echo $pages->currentPage + 1?>"/>
-  <input type="hidden" name="category_id" value="<?php echo $category_id?>"/>
   <input type="hidden" name="name" value="<?php echo $name?>"/>
   <input type="hidden" name="author" value="<?php echo $author?>"/>
 </form>

@@ -1,0 +1,139 @@
+@CHARSET "UTF-8";
+#left {
+	clear: both;
+	width: 680px;
+	height: 800px;
+	float: left;
+	margin-top: 80px;
+}
+.title {
+	font-size: 28px;
+	font-weight: bold;
+}
+#left hr {
+	margin-top: 20px;
+	height: 1px;
+	border:none;
+	border-top: 1px solid #ccc;
+}
+.top {
+	margin-top: 20px;
+}
+.pic {
+	width: 120px;
+	height: 150px;
+	float: left;
+}
+.content {
+	margin-left: 30px;
+	float: left;
+}
+.content dl dt {
+	line-height: 30px;
+	height: 30px;
+}
+.content dl dt span {
+	background: url('/images/u37.png');
+	width: 31px;
+	height: 20px;
+	font-size: 12px;
+}
+.pj {
+	width: 200px;
+	height: 150px;
+	float: right;
+	margin-right: 70px;
+}
+.pj p {
+	height: 20px;
+	margin-top: 5px;
+	/*width: 140px;*/
+}
+.pj strong {
+	color: red;
+	font-weight: 400;
+	margin-left: 10px;
+	height: 17px;
+	line-height: 17px;
+	padding-top: 2px;
+}
+.vote-star {
+    background: url("/images/star.png") repeat-x scroll 0 -21px rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 22px;
+    /*margin-right: 6px;*/
+    overflow: hidden;
+    vertical-align: middle;
+    width: 75px;
+    float: left;
+}
+.vote-star i{
+	display:inline-block;/*内联元素转换成块元素，并不换行 weisay.com*/
+	height:17px;/*1个星星的高度 weisay.com*/
+	background:url('/images/star.png') repeat-x 0 1px;
+}
+.pj_num {
+	color: #25539e;
+	font-size: 16px;
+	font-weight: 700px;
+}
+.jdt {
+	background: none repeat scroll 0 0 #f57a4b;
+	height: 15px;
+	/*float: right;*/
+	float: left;
+	margin-top: 2px;
+	margin-left: 10px;
+}
+.percent {
+	height: 15px;
+	/*float: right;*/
+	float: left;
+	margin-top: 4px;
+	margin-left: 10px;
+}
+
+.mid {
+	clear: both;
+	margin-top: 30px;
+	width: 125px;
+	height: 35px;
+	float: left;
+}
+.mid img {
+	padding-top: 5px;
+}
+.pj2 {
+	height: 35px;
+	float: left;
+	margin-top: 30px;
+	line-height: 30px;
+	margin-left: 5px;
+}
+.main_title {
+	clear: both;
+	color: #38831a;
+	font-size: 18px;
+	font-weight: 400;
+	margin-top: 260px;
+}
+.book_intro {
+	margin-top: 25px;
+}
+#right {
+	width: 260px;
+	float: right;
+	margin-top: 130px;
+	background-color: #feead8;
+}
+#right dl {
+	margin-left: 10px;
+}
+#right dl dt{
+	font-size: 16px;
+	font-weight: 700;
+	margin-top: 20px;
+}
+#right dl dd {
+	margin-top: 20px;
+}

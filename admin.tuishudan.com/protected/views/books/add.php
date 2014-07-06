@@ -3,17 +3,6 @@
     <div class="pageFormContent" layouth="56">
       <input type="hidden" name="is_submit" value="true" />
       <div class="unit">
-        <label>分类名称：</label>
-        <select name="category_id">
-        <option value="0">请选择</option>
-          <?php
-          foreach ($categorys as $key => $value) {
-            echo '<option value="'. $value->id .'">'. $value->title .'</option>';
-          }
-          ?>
-        </select>
-      </div>
-      <div class="unit">
         <label>书名：</label>
         <input type="text" name="name" size="30" class="required textInput" />
       </div>

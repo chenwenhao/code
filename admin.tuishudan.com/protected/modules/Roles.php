@@ -13,8 +13,6 @@ class Roles
 				array(
 					'name'=>'内容管理',
 					'submenu'=>array(
-						array('name'=>'分类管理', 'path'=>'content_category/index', 'rel'=>'c_c_index', 'role'=>array(3)),
-						array('name'=>'书本分类管理', 'path'=>'books_category/index', 'rel'=>'b_c_index', 'role'=>array(3)),
 						array('name'=>'书本管理', 'path'=>'books/index', 'rel'=>'booksindex', 'role'=>array(3)),
 					),
 				),

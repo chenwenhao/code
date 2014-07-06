@@ -10,9 +10,30 @@ class SiteController extends MyController
 	 */
 	public function actionIndex()
 	{
-		$data = array();
+		// 查询书
+		$books = Books::model()->findAll();
 
+		$data = array('books' => $books);
 		$this->css = 'index';
 		$this->render('index', $data);
+	}
+
+	/**
+	 * 详细页
+	 */
+	public function actionBook()
+	{
+		// 参数
+		$book_id = intval(Yii::app()->request->getParam('book_id'));
+
+		// 判断书是否存在
+		$book = Books::model()->findByPk($book_id);
+		if (!$book || !$book_id) {
+			$this->redirect('/');
+		}
+
+		$data = array('book' => $book);
+		$this->css = 'book';
+		$this->render('book', $data);
 	}
 }

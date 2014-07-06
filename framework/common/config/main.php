@@ -41,7 +41,7 @@ else
 		define('SCHEMACACHINGDURATION', 86400);# 数据库缓存时间
 		define('ENABLEPROFILING', TRUE);# 数据库缓存是否开启
 		$cache = array (
-			'class' => 'CMemCache',
+			'class' => 'Cache',
 			'servers' => array(
 				array(
 					'host' => '127.0.0.1',

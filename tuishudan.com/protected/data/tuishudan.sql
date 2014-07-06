@@ -51,3 +51,14 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `phone`, `name`, `reg
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- 表的结构 `tags`
+--
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `id` int(11) NOT NULL,
+  `tag_name` int(11) NOT NULL COMMENT '标签名字',
+  `book_id` int(11) NOT NULL COMMENT '书ID'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='书标签表';
+

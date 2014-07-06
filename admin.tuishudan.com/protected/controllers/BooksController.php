@@ -16,7 +16,6 @@ class BooksController extends Controller
 	{
 		// 参数
 		$page = intval(Yii::app()->request->getParam('pageNum')) - 1;
-		$category_id = intval(Yii::app()->request->getParam('category_id'));
 		$name = trim(Yii::app()->request->getParam('name'));
 		$author = trim(Yii::app()->request->getParam('author'));
 
@@ -46,7 +45,6 @@ class BooksController extends Controller
 		$data = array(
 			'name' => $name,
 			'author' => $author,
-			'category_id' => $category_id,
 			'pages' => $pages,
 			'rows' => $rows,
 		);
@@ -60,7 +58,6 @@ class BooksController extends Controller
 	{
 		// 参数
 		$is_submit = trim(Yii::app()->request->getParam('is_submit'));
-		$category_id = intval(Yii::app()->request->getParam('category_id'));
 		$name = trim(Yii::app()->request->getParam('name'));
 		$author = trim(Yii::app()->request->getParam('author'));
 		$from = trim(Yii::app()->request->getParam('from'));
@@ -94,7 +91,6 @@ class BooksController extends Controller
 			
 			// 入库
 			$row = new Books();
-			$row->category_id = $category_id;
 			$row->name = $name;
 			$row->author = $author;
 			$row->from = $from;
@@ -102,12 +98,16 @@ class BooksController extends Controller
 			$row->checked = $checked;
 			$row->tag = $tag;
 			$row->intro = $intro;
+
 			if($row->save())
 			{
 				// 上传图片
 				$cover_img = MyImgUploader::upload_cover_img('cover_img', $row->id);
 				$row->cover_img = $cover_img;
 				$row->save();
+
+				// tag入库
+				Tags::model()->dispose($row->id, $tag);
 
 				$this->alert_ok('操作成功', array('callbackType'=>'closeCurrent', 'navTabId'=>'booksindex'));
 			}
@@ -117,12 +117,7 @@ class BooksController extends Controller
 			}
 		}
 
-		// 查询所有书本分类
-		$categorys = Books_category::model()->findAll();
-		
-		// 显示
-		$data = array('categorys' => $categorys);
-		$this->renderPartial('add', $data);
+		$this->renderPartial('add');
 	}
 
 	/**
@@ -133,7 +128,6 @@ class BooksController extends Controller
 		// 参数
 		$is_submit = trim(Yii::app()->request->getParam('is_submit'));
 		$id = intval(Yii::app()->request->getParam('id'));
-		$category_id = intval(Yii::app()->request->getParam('category_id'));
 		$name = trim(Yii::app()->request->getParam('name'));
 		$from = trim(Yii::app()->request->getParam('from'));
 		$author = trim(Yii::app()->request->getParam('author'));
@@ -178,8 +172,9 @@ class BooksController extends Controller
 				$cover_img = $new_cover_img;
 			}
 			
+			$old_tag = $row->tag;
+
 			// 入库
-			$row->category_id = $category_id;
 			$row->name = $name;
 			$row->author = $author;
 			$row->from = $from;
@@ -190,6 +185,11 @@ class BooksController extends Controller
 			$row->cover_img = $cover_img;
 			if($row->save())
 			{
+				if ($tag && $tag != $old_tag) {
+					// tag入库
+					Tags::model()->dispose($row->id, $tag);
+				}
+
 				$this->alert_ok('操作成功', array('callbackType'=>'closeCurrent', 'navTabId'=>'booksindex'));
 			}
 			else
