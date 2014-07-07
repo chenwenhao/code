@@ -293,4 +293,38 @@ class MemberController extends MyController
 	{
 		echo MySecCode::show();
 	}
+
+	public function actionSina_login()
+	{
+        require 'libweibo/config.php';
+        require 'libweibo/saetv2.ex.class.php';
+		$o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+
+		if (isset($_REQUEST['code'])) {
+			$keys = array();
+			$keys['code'] = $_REQUEST['code'];
+			$keys['redirect_uri'] = WB_CALLBACK_URL;
+			try {
+				$token = $o->getAccessToken( 'code', $keys ) ;
+			} catch (OAuthException $e) {
+			}
+		}
+
+		if ($token) {
+			$_SESSION['token'] = $token;
+			setcookie( 'weibojs_'.$o->client_id, http_build_query($token) );
+			echo 111;exit();
+		} else {
+			echo 2222;exit();
+		}
+	}
+
+	public function actionEcho_sina()
+	{
+		require 'libweibo/config.php';
+        require 'libweibo/saetv2.ex.class.php';
+		$o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+		$code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+		echo $code_url;exit();
+	}
 }
