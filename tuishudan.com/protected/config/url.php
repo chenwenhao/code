@@ -7,4 +7,5 @@ return array(
 	'login.html' => 'member/login', // 登录
 	'login_out.html' => 'member/login_out', // 退出
 	'mine.html' => 'member/mine', // 我的账户
+	'mybook.html' => 'site/mybook', // 我的书库
 );

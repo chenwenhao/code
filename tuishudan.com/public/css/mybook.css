@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+#main {
+	clear: both;
+}
+.fsb_title {
+	margin: 75px 20px 0 0;
+	height: auto;
+}
+.f1 {
+	font-size: 28px;
+	font-weight: bold;
+}
+.f2 {
+	margin-left: 30px;
+	color: #999999;
+}
+.like {
+	float: right;
+	margin-top: 30px;
+	color: #999999;
+}
+.like a {
+	text-decoration: none;
+	color: #25539e;
+}
+.list {
+	width: 325px;
+	float: left;
+	margin-top: 30px;
+}
+.pic {
+	float: left;
+}
+.pic a {
+	text-decoration: none;
+	outline: none;
+}
+.content {
+	float: left;
+	width: 100px;
+	margin-left: 35px;
+}
+.content h3 a {
+	color: #25539E;
+	font-size: 16px;
+	font-weight: 200;
+	text-decoration: none;
+}
+.content h3 a:hover {
+	color: red;
+}
+.content p {
+	padding-top: 25px;
+	width: 300px;
+}
+.vote-star {
+	background: url("/images/star.png") repeat-x scroll 0 -21px rgba(0, 0, 0, 0);
+	display: inline-block;
+	height: 22px;
+	/*margin-right: 6px;*/
+	overflow: hidden;
+	vertical-align: middle;
+	width: 75px;
+}
+.vote-star i{
+	display:inline-block;/*内联元素转换成块元素，并不换行 weisay.com*/
+	height:17px;/*1个星星的高度 weisay.com*/
+	background:url('/images/star.png') repeat-x 0 1px;
+}

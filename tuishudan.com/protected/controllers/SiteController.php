@@ -36,4 +36,16 @@ class SiteController extends MyController
 		$this->css = 'book';
 		$this->render('book', $data);
 	}
+
+	/**
+	 * 我的书库
+	 */
+	public function actionMybook()
+	{
+		// 参数
+
+		$data = array();
+		$this->css = 'mybook';
+		$this->render('mybook', $data);
+	}
 }

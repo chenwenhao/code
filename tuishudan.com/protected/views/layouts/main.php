@@ -16,9 +16,9 @@ if($this->css)
 </head>
 <body>
 <div id="header">
-  <div class="logo"><img src="/images/logo.png"></div>
+  <div class="logo"><a href="/"><img src="/images/logo.png"></a></div>
   <dl><dd>发现分享高品质网络小说</dd><dd>tuishudan.com</dd></dl>
-  <ul><li><a href="#">发现小说</a></li><li><a href="#">我的书库</a></li></ul>
+  <ul><li><a href="/">发现小说</a></li><li><a href="#">我的书库</a></li></ul>
   <div class="search_bg"></div>
   <div class="search_bg2">
   <form>

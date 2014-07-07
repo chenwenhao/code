@@ -2,33 +2,41 @@
 	<p class="title"><?php echo $book->name?></p>
 	<hr>
 	<div class="top">
-		<div class="pic"><img src="<?php echo Yii::app()->params['cover_img_url'] . $book->cover_img?>"></div>
+		<div class="pic"><img src="<?php echo Yii::app()->params['cover_img_url'] . $book->cover_img?>" title="<?php echo $book->name?>"></div>
 		<div class="content">
 			<dl>
 				<dt>作者：<?php echo $book->author?></dt>
 				<dt>标签：
 				<?php
-				$tag_arr = explode(',', $book->tag);
-				foreach ($tag_arr as $key => $value) {
-					echo '<span>'. $value .'</span> ';
+				if ($book->tag) {
+					$tag_arr = explode(',', $book->tag);
+					foreach ($tag_arr as $key => $value) {
+						echo '<span>'. $value .'</span> ';
+					}
 				}
 				?>
 				</dt>
-				<dt>主角：张无</dt>
+				<!-- <dt>主角：</dt> -->
 				<dt>来自：起点</dt>	
-				<dt>已完本 (2007)</dt>
+				<dt><?php echo Yii::app()->params['book_status'][$book->status]?> <!-- (2007) --></dt>
 			</dl>
 		</div>
 		<div class="pj">
 			<p><span class="vote-star"><i style="width:75%"></i></span><strong>8.8</strong></p>
-			<p><span class="pj_num">（120001人评论）</span></p>
+			<p><span class="pj_num">（<?php echo $book->comment_times?>人评论）</span></p>
 			<p><span class="vote-star"><i style="width:50%"></i></span><span class="jdt" style="width:34px;"></span><span class="percent">89%</span></p>
-			<p><span class="vote-star"><i style="width:75%"></i></span></p>
-			<p><span class="vote-star"><i style="width:75%"></i></span></p>
+			<p><span class="vote-star"><i style="width:75%"></i></span><span class="jdt" style="width:34px;"></span><span class="percent">89%</span></p>
+			<p><span class="vote-star"><i style="width:75%"></i></span><span class="jdt" style="width:34px;"></span><span class="percent">89%</span></p>
 		</div>
 	</div>
 	<div class="mid"><img src="/images/xkan.png" />&nbsp;&nbsp;&nbsp;<img src="/images/kanguo.png"></div>
-	<div class="pj2">评价</div>
+	<div class="pj2">评价:
+		<span class="pingxing" id="px1"><i></i></span>
+		<span class="pingxing" id="px2"><i></i></span>
+		<span class="pingxing" id="px3"><i></i></span>
+		<span class="pingxing" id="px4"><i></i></span>
+		<span class="pingxing" id="px5"><i></i></span>
+	</div>
 	<div class="main_title"><?php echo $book->name?></div>
 	<div class="book_intro"><?php echo $book->intro?></div>
 </div>
@@ -42,3 +50,15 @@
 		<dd>1分，呵呵</dd>
 	</dl>
 </div>
+<script>
+$(function () {
+$("#px1,#px2,#px3,#px4,#px5").bind("mouseover",function(){
+  $(this).find("i").attr("style","width:100%");
+  $(this).prevAll().find("i").attr("style","width:100%");
+});
+$("#px1,#px2,#px3,#px4,#px5").bind("mouseout",function(){
+  $(this).find("i").attr("style","width:0%");
+  $(this).prevAll().find("i").attr("style","width:0%");
+});
+});
+</script>

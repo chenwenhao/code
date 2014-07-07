@@ -18,9 +18,9 @@ if(defined('YII_DEBUG') && YII_DEBUG)
 }
 else
 {
-	define('DB_HOST', '');
-	define('DB_USER', '');
-	define('DB_PASSWORD', '');
+	define('DB_HOST', '127.0.0.1');
+	define('DB_USER', 'root');
+	define('DB_PASSWORD', '421023');
 	
 	if(defined("IS_COMMAND") && IS_COMMAND == TRUE)
 	{
@@ -41,14 +41,9 @@ else
 		define('SCHEMACACHINGDURATION', 86400);# 数据库缓存时间
 		define('ENABLEPROFILING', TRUE);# 数据库缓存是否开启
 		$cache = array (
-			'class' => 'Cache',
-			'servers' => array(
-				array(
-					'host' => '127.0.0.1',
-					'port' => 11211,
-					'persistent' => true,
-				),
-			),
+			'class' => 'CFileCache', //文件缓存
+			'cachePath' => ROOT . '/runtime/cache',// 缓存目录
+			'directoryLevel' => '1', // 缓存文件的目录深度
 	   	);
 		$cache_time = 3600;
 	}
@@ -107,6 +102,10 @@ $default_conf = array(
 		'cache_timeout' => $cache_time, // 页面片断缓存时间
 		'cover_img_url' => 'http://tuishudan.com/cover_imgs/', // 封面图访问地址
 		'cover_img_path' => ROOT . '/tuishudan.com/public/cover_imgs/', // 封面图存储路径
+		'book_status' => array(
+			0 => '连载',
+			1 => '完结',
+		),
 	),
 );
 if(file_exists(APP_ROOT . '/protected/config/config.php'))

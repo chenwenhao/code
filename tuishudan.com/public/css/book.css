@@ -2,7 +2,7 @@
 #left {
 	clear: both;
 	width: 680px;
-	height: 800px;
+	height: auto;
 	float: left;
 	margin-top: 80px;
 }
@@ -58,14 +58,14 @@
 	padding-top: 2px;
 }
 .vote-star {
-    background: url("/images/star.png") repeat-x scroll 0 -21px rgba(0, 0, 0, 0);
-    display: inline-block;
-    height: 22px;
-    /*margin-right: 6px;*/
-    overflow: hidden;
-    vertical-align: middle;
-    width: 75px;
-    float: left;
+	background: url("/images/star.png") repeat-x scroll 0 -21px rgba(0, 0, 0, 0);
+	display: inline-block;
+	height: 22px;
+	/*margin-right: 6px;*/
+	overflow: hidden;
+	vertical-align: middle;
+	width: 75px;
+	float: left;
 }
 .vote-star i{
 	display:inline-block;/*内联元素转换成块元素，并不换行 weisay.com*/
@@ -107,8 +107,22 @@
 	height: 35px;
 	float: left;
 	margin-top: 30px;
-	line-height: 30px;
+	line-height: 35px;
 	margin-left: 5px;
+}
+.pingxing {
+	background: url("/images/pingxing.png") no-repeat scroll 0 -20px rgba(0, 0, 0, 0);
+	display: inline-block;
+	height: 23px;
+	/*margin-right: 6px;*/
+	overflow: hidden;
+	vertical-align: middle;
+	width: 15px;
+}
+.pingxing i{
+	display:inline-block;/*内联元素转换成块元素，并不换行 weisay.com*/
+	height:19px;/*1个星星的高度 weisay.com*/
+	background:url('/images/pingxing.png') no-repeat 0 3px;
 }
 .main_title {
 	clear: both;
@@ -136,4 +150,5 @@
 }
 #right dl dd {
 	margin-top: 20px;
+	font-size: 13px;
 }
