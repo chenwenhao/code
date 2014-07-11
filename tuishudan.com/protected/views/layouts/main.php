@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta property="wb:webmaster" content="2a61e43fc8fc208f" />
+<meta property="wb:webmaster" content="4a68579cc26ed37b" />
 <meta property="qc:admins" content="26561317513054166375" />
 <title>推书单</title>
 <link rel="shortcut icon" href="favicon.ico" />
