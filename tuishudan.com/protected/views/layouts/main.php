@@ -26,7 +26,10 @@ if($this->css)
   <input type="text" name="search" placeholder="作者、小说" autocomplete="off" />  
   </form>
   </div>
-  <div class="reg_login"><span class="reg"><a href="#">注册</a></span><span class="login"><a href="#">登录</a></span></div>
+  <div class="reg_login">
+  <span class="sina"><a href="sina"><img src="/images/sina.png" width="32" height="32"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="qq"><a href="bbb"><img src="/images/qq.png" width="32" height="32"></a></span>
+  </div>
   <div class="menu"><img src="/images/trigon.png" /><img src="/images/hui.png" style="margin: 17px 0 0 -27px;"><span class="fsb_font">封神榜</span></div>
 </div>
 <?php echo $content?>

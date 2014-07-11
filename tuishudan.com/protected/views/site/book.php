@@ -2,7 +2,7 @@
 	<p class="title"><?php echo $book->name?></p>
 	<hr>
 	<div class="top">
-		<div class="pic"><img src="<?php echo Yii::app()->params['cover_img_url'] . $book->cover_img?>" title="<?php echo $book->name?>"></div>
+		<div class="pic"><img src="<?php echo Yii::app()->params['cover_img_url'] . $book->cover_img?>" title="<?php echo $book->name?>" width="120" height="150"></div>
 		<div class="content">
 			<dl>
 				<dt>作者：<?php echo $book->author?></dt>
