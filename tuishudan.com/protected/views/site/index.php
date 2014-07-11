@@ -1,4 +1,4 @@
-<div class="fsb_title"><p><span class="f1">推书单网络文学封神榜</span><span class="f2">久闻大名，不敢排名</span></p></div>
+<div class="fsb_title"><p><span class="f1">推书</span><span class="f2">让烂书滚蛋</span></p></div>
 <div style="margin-top: 20px;"><img src="/images/line.png" /></div>
 <div id="main">
 <?php foreach($books as $key => $row):?>

@@ -327,4 +327,13 @@ class MemberController extends MyController
 		$code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
 		echo $code_url;exit();
 	}
+
+	/**
+	 * 用户加书
+	 */
+	public function actionBook_add()
+	{
+		$this->css = 'book_add';
+		$this->render('book_add');
+	}
 }
