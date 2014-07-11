@@ -319,12 +319,15 @@ class MemberController extends MyController
 		}
 	}
 
-	public function actionEcho_sina()
+	public function actionTencent_login()
 	{
-		require 'libweibo/config.php';
-        require 'libweibo/saetv2.ex.class.php';
-		$o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
-		$code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
-		echo $code_url;exit();
+		require_once("../../API/qqConnectAPI.php");
+		$qc = new QC();
+		$qc->qq_login();
+	}
+
+	public function actionTencent_back()
+	{
+		echo 1111;exit;
 	}
 }
