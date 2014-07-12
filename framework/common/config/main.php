@@ -100,7 +100,7 @@ $default_conf = array(
 	// 调用方法 Yii::app()->params['paramName']
 	'params' => array(
 		'cache_timeout' => $cache_time, // 页面片断缓存时间
-		'cover_img_url' => 'http://tuishudan.com/cover_imgs/', // 封面图访问地址
+		'cover_img_url' => 'http://www.tuishudan.com/cover_imgs/', // 封面图访问地址
 		'cover_img_path' => ROOT . '/tuishudan.com/public/cover_imgs/', // 封面图存储路径
 		'book_status' => array(
 			0 => '连载',
