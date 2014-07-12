@@ -149,8 +149,15 @@ h2 {
 	font-weight: 200px;
 	color: #fff;
 }
-#footer p {
+#footer {
 	clear: both;
+	height: 50px;
+	width: 980px;
+	border: 1px solid #fff;
+	margin-top: 20px;
+}
+#footer p {
+	/*clear: both;*/
 	margin-top: 20px;
 	color: #999;
 }

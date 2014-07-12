@@ -30,11 +30,11 @@ if($this->css)
   <!-- <span class="sina"><a href="sina"><img src="/images/sina.png" width="32" height="32"></a></span>&nbsp;&nbsp;&nbsp;&nbsp; -->
   <?php
   if ($this->userinfo) {
-    echo '<div class="login_on"><img src="'. $this->userinfo->avatar .'" /><span style="color:#fff;position: relative;top:-10px;left:9px;">'. $this->userinfo->name .' <a href="#" id="login_out">退出</a></span></div>';
+    echo '<div class="login_on"><img src="'. $this->userinfo->avatar .'" /><span style="color:#fff;position: relative;top:-10px;left:9px;">'. $this->userinfo->name .' <a href="#" id="login_out" style="color:#fff">退出</a></span></div>';
   }
   else
   {
-    echo '<div class="reg_login"><span class="qq"><a href="javascript:void(0)" onclick="toLogin();"><img src="/images/qqnew.png" width="63" height="24"></a></span></div>';
+    echo '<div class="reg_login"><span class="qq"><a href="javascript:void(0)" onclick="toLogin();"><img src="/images/qqnew.png" width="63" height="24" style="margin:4px;"></a></span></div>';
   }
   ?>
   
