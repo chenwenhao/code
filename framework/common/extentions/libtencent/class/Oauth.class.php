@@ -35,7 +35,6 @@ class Oauth{
         //-------生成唯一随机串防CSRF攻击
         $state = md5(uniqid(rand(), TRUE));
         $this->recorder->write('state',$state);
-
         //-------构造请求参数列表
         $keysArr = array(
             "response_type" => "code",
