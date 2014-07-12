@@ -38,7 +38,7 @@ if($this->css)
   }
   ?>
   
-  <div class="menu"><img src="/images/trigon.png" /><img src="/images/hui.png" style="margin: 17px 0 0 -27px;"><span class="fsb_font">封神榜</span></div>
+  <div class="menu"><img src="/images/trigon.png" class="current"/><img src="/images/hui.png" class="fsb_font_1"><span class="fsb_font">封神榜</span></div>
 </div>
 <?php echo $content?>
 <div id="footer">

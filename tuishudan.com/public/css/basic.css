@@ -131,16 +131,21 @@ h2 {
 	background-image: url('/images/menu.png');
 	height: 41px;
 }
-.menu img {
-	position: absolute;
-	top: 73px;
-	left: 582px;
+.current {
+	position: relative ;
+	top: -23px;
+	left: 352px;
 	clear: both;
 }
+.fsb_font_1 {
+	position: relative;
+	top: 8px;
+	left: 305px;
+}
 .fsb_font {
-	position: absolute;
-	top: 93px;
-	left: 572px;
+	position: relative;
+	top: 3px;
+	left: 247px;
 	font-weight: 200px;
 	color: #fff;
 }
