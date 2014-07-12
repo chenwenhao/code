@@ -26,67 +26,45 @@ class MemberController extends MyController
 	{
 		// 参数
 		$is_submit = trim(Yii::app()->request->getParam('is_submit'));
-		$username = trim(Yii::app()->request->getParam('username'));
-		$password = Yii::app()->request->getParam('password');
-		$password2 = Yii::app()->request->getParam('password2');
-		$email = trim(Yii::app()->request->getParam('email'));
-		$name = trim(Yii::app()->request->getParam('name'));
-		$v_code = trim(Yii::app()->request->getParam('v_code'));
+		$openid = trim(Yii::app()->request->getParam('openid'));
+		$nickname = Yii::app()->request->getParam('nickname');
+		$gender = Yii::app()->request->getParam('gender');
+		$login_msg = Yii::app()->request->getParam('login_msg');
 
 		// 提交
-		if(!$username || strlen($username) < 3)
+		if(!$openid || !$nickname || !$gender)
 		{
-			$this->jsonp(false, '用户名格式错误');
-		}
-
-		if(!$password || strlen($password) < 6)
-		{
-			$this->jsonp(false, '密码不能小于6位');
-		}
-
-		if($password != $password2)
-		{
-			$this->jsonp(false, '两次密码输入不一致');
-		}
-
-		if(!$email)
-		{
-			$this->jsonp(false, '请填写邮箱地址');
-		}
-
-		if($this->checkEmail($email) == false)
-		{
-			$this->jsonp(false, '邮箱格式错误');
-		}
-
-		if($v_code != strtolower(Yii::app()->user->getState('re_code')))
-		{
-			$this->jsonp(false, '验证码错误');
+			$this->jsonp(false, '参数错误');
 		}
 
 		// 用户或邮箱 已经存在
 		$cdb = new CDbCriteria();
-		$cdb->condition = "username = :username OR email = :email";
-		$cdb->params = array(":username" => $username, ":email" => $email);
+		$cdb->condition = "openid = :openid";
+		$cdb->params = array(":openid" => $openid);
 		$exsit = User::model()->find($cdb);
 		if($exsit)
 		{
-			$this->jsonp(false, '用户名或邮箱已存在');
-		}
-
-		$row = new User();
-		$row->username = $username;
-		$row->password = $this->hash_password($password);
-		$row->email = $email;
-		$row->name = $name;
-		if($row->save())
-		{
-			// 注册成功后直接登录
-			$identity = new MyUserIdentity($username, $password);
+			$identity = new MyUserIdentity($exsit->openid, '');
 			if($identity->authenticate())
 			{
 				Yii::app()->user->login($identity, 3600*24*7);
-				$this->jsonp(true);
+				$this->jsonp(true, '', '', $refer);
+			}
+		}
+		
+		$row = new User();
+		$row->openid = $openid;
+		$row->name = $nickname;
+		$row->gender = $gender;
+		$row->login_msg = $login_msg;
+		if($row->save())
+		{
+			// 注册成功后直接登录
+			$identity = new MyUserIdentity($openid, '');
+			if($identity->authenticate())
+			{
+				Yii::app()->user->login($identity, 3600*24*7);
+				$this->jsonp(true, '', '', $refer);
 			}
 		}
 		else
@@ -118,30 +96,29 @@ class MemberController extends MyController
 	public function actionLogin_submit()
 	{
 		// 参数
-		$username = trim(Yii::app()->request->getParam('username'));
-		$email = trim(Yii::app()->request->getParam('email'));
-		$password = Yii::app()->request->getParam('password');
+		$openid = trim(Yii::app()->request->getParam('openid'));
+		$refer = trim(Yii::app()->request->getParam('refer'));
 
-		if(!$username)
+		if(!$openid)
 		{
-			$this->jsonp(false, '用户名不能为空');
+			$this->jsonp(false, 'openid不能为空');
 		}
 
 		$cdb = new CDbCriteria();
-		$cdb->condition = "username = :username OR email = :username";
-		$cdb->params = array(":username"=>$username);
+		$cdb->condition = "openid = :openid";
+		$cdb->params = array(":openid"=>$openid);
 		$row = User::model()->find($cdb);
-		if(!$row || $row->password != $this->hash_password($password))
+		if(!$row)
 		{
-			$this->jsonp(false, '用户名，邮箱或密码错误');
+			$this->jsonp(false, '用户不存在');
 		}
 
 		// 登录
-		$identity = new MyUserIdentity($username, $password);
+		$identity = new MyUserIdentity($openid);
 		if($identity->authenticate())
 		{
 			Yii::app()->user->login($identity, 3600*24*7);
-			$this->jsonp(true);
+			$this->jsonp(true, '', '', $refer);
 		}
 		else
 		{
@@ -334,8 +311,15 @@ class MemberController extends MyController
 		$oid = $qc->get_openid();
 		$qc = new QC($acs,$oid);
 		$uinfo = $qc->get_user_info();
-        var_dump($uinfo);
-        var_dump(Yii::app()->session);exit;
+		$refer = trim(Yii::app()->request->getParams('refer'));
+
+		$login_msg = json_encode($uinfo);
+
+		if ($uinfo) {
+			$this->redirect('/member/register_submit?openid='. $oid .'&nickname='. $uinfo['nickname'] .'&gender='. $uinfo['gender'] .'&login_msg='. $login_msg . '&refer='. $refer);
+		}
+        // var_dump($uinfo);
+        // var_dump(Yii::app()->session);exit;
 	}
 
 	/**

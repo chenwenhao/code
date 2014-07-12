@@ -23,12 +23,12 @@ if($this->css)
   <div class="search_bg"></div>
   <div class="search_bg2">
   <form>
-  <input type="text" name="search" id="search" value="作者、小说" autocomplete="off" />  
+  <input type="text" name="search" placeholder="作者、小说" autocomplete="off" />  
   </form>
   </div>
   <div class="reg_login">
   <!-- <span class="sina"><a href="sina"><img src="/images/sina.png" width="32" height="32"></a></span>&nbsp;&nbsp;&nbsp;&nbsp; -->
-  <span class="qq"><a href="javascript:void(0)" onclick="toLogin();"><img src="/images/qqnew.png" width="63" height="24"></a></span>
+  <span class="qq"><a href="javascript::void();" onclick="toLogin();"><img src="/images/qqnew.png" width="63" height="24"></a></span>
   </div>
   <div class="menu"><img src="/images/trigon.png" /><img src="/images/hui.png" style="margin: 17px 0 0 -27px;"><span class="fsb_font">封神榜</span></div>
 </div>
@@ -46,18 +46,10 @@ $("#login_out").click(function() {
 
  function toLogin()
  {
-   var A=window.open("/member/tencent_login","TencentLogin", "width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
- }
-$(function () {
-  $("#search").focus(function(){
-    $(this).val("").css("color","#565656");
-  });
-  $("#search").blur(function(){     
-    if($(this).val()==""){
-      $(this).val(this.defaultValue).css("color","#ccc");
-    } 
-  })
-});
+   //以下为按钮点击事件的逻辑。注意这里要重新打开窗口
+   //否则后面跳转到QQ登录，授权页面时会直接缩小当前浏览器的窗口，而不是打开新窗口
+   var A=window.open("member/tencent_login","TencentLogin","width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+ } 
 </script>
 
 <?php
