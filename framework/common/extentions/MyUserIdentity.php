@@ -33,16 +33,42 @@ class MyUserIdentity extends CUserIdentity
 	/**
 	* 用户登录
 	*/
+	// public function authenticate()
+	// {
+	// 	$cdb = new CDbCriteria;
+	// 	$cdb->condition = "username = :username OR email = :username";
+	// 	$cdb->params = array(':username' => $this->username);
+	// 	$row = User::model()->find($cdb);
+
+	// 	if(!$row)
+	// 	{
+	// 		MyController::jsonp(false, '用户名不存在');
+	// 	}
+	// 	else
+	// 	{
+ //            // 存放登录信息
+	// 		$this->setState('user_is_login', TRUE);
+	// 		$this->setState('user_id', $row->id);
+	// 		$this->setState('name', $row->name);
+	// 		$this->setState('username', $row->username);
+	// 		$this->username = $row->username;
+	// 		return $row->id;
+	// 	}
+	// }
+
+	/**
+	* 用户登录
+	*/
 	public function authenticate()
 	{
 		$cdb = new CDbCriteria;
-		$cdb->condition = "username = :username OR email = :username";
-		$cdb->params = array(':username' => $this->username);
+		$cdb->condition = "openid = :openid";
+		$cdb->params = array(':openid' => $this->username);
 		$row = User::model()->find($cdb);
-
+//print_r($row);die;
 		if(!$row)
 		{
-			MyController::jsonp(false, '用户名不存在');
+			MyController::jsonp(false, '用户不存在');
 		}
 		else
 		{
@@ -50,8 +76,8 @@ class MyUserIdentity extends CUserIdentity
 			$this->setState('user_is_login', TRUE);
 			$this->setState('user_id', $row->id);
 			$this->setState('name', $row->name);
-			$this->setState('username', $row->username);
-			$this->username = $row->username;
+			$this->setState('openid', $row->openid);
+			//$this->openid = $row->openid;
 			return $row->id;
 		}
 	}

@@ -5,7 +5,8 @@ $(document).ready(function() {
 				if(json.status == true)
 				{
 					alert('登录成功');
-					window.location.href = '/mine.html';
+					window.close();
+					window.location.href = json.refer;
 				}
 				else
 				{
