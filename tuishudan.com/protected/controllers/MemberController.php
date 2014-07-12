@@ -30,6 +30,8 @@ class MemberController extends MyController
 		$nickname = Yii::app()->request->getParam('nickname');
 		$gender = Yii::app()->request->getParam('gender');
 		$login_msg = Yii::app()->request->getParam('login_msg');
+		$refer = trim(Yii::app()->request->getParam('refer'));
+		$avatar = trim(Yii::app()->request->getParam('avatar'));
 
 		// 提交
 		if(!$openid || !$nickname || !$gender)
@@ -48,7 +50,7 @@ class MemberController extends MyController
 			if($identity->authenticate())
 			{
 				Yii::app()->user->login($identity, 3600*24*7);
-				$this->jsonp(true, '', '', $refer);
+				$this->redirect($refer);
 			}
 		}
 		
@@ -57,6 +59,7 @@ class MemberController extends MyController
 		$row->name = $nickname;
 		$row->gender = $gender;
 		$row->login_msg = $login_msg;
+		$row->avatar = $avatar;
 		if($row->save())
 		{
 			// 注册成功后直接登录
@@ -64,7 +67,7 @@ class MemberController extends MyController
 			if($identity->authenticate())
 			{
 				Yii::app()->user->login($identity, 3600*24*7);
-				$this->jsonp(true, '', '', $refer);
+				$this->redirect($refer);
 			}
 		}
 		else
@@ -311,12 +314,12 @@ class MemberController extends MyController
 		$oid = $qc->get_openid();
 		$qc = new QC($acs,$oid);
 		$uinfo = $qc->get_user_info();
-		$refer = trim(Yii::app()->request->getParams('refer'));
+		$refer = urlencode('http://www.tuishudan.com');
 
 		$login_msg = json_encode($uinfo);
 
 		if ($uinfo) {
-			$this->redirect('/member/register_submit?openid='. $oid .'&nickname='. $uinfo['nickname'] .'&gender='. $uinfo['gender'] .'&login_msg='. $login_msg . '&refer='. $refer);
+			$this->redirect('/member/register_submit?openid='. $oid .'&nickname='. $uinfo['nickname'] .'&gender='. $uinfo['gender'] .'&login_msg='. $login_msg . '&refer='. $refer . '&avatar='. $uinfo['figureurl']);
 		}
         // var_dump($uinfo);
         // var_dump(Yii::app()->session);exit;

@@ -26,10 +26,18 @@ if($this->css)
   <input type="text" id="search" name="search" value="作者、小说" autocomplete="off" />  
   </form>
   </div>
-  <div class="reg_login">
+  
   <!-- <span class="sina"><a href="sina"><img src="/images/sina.png" width="32" height="32"></a></span>&nbsp;&nbsp;&nbsp;&nbsp; -->
-  <span class="qq"><a href="javascript:void(0)" onclick="toLogin();"><img src="/images/qqnew.png" width="63" height="24"></a></span>
-  </div>
+  <?php
+  if ($this->userinfo) {
+    echo '<div class="login_on"><img src="'. $this->userinfo->avatar .'" /><span style="color:#fff;">'. $this->userinfo->name .' <a href="#" id="login_out">退出</a></span></div>';
+  }
+  else
+  {
+    echo '<div class="reg_login"><span class="qq"><a href="javascript:void(0)" onclick="toLogin();"><img src="/images/qqnew.png" width="63" height="24"></a></span></div>';
+  }
+  ?>
+  
   <div class="menu"><img src="/images/trigon.png" /><img src="/images/hui.png" style="margin: 17px 0 0 -27px;"><span class="fsb_font">封神榜</span></div>
 </div>
 <?php echo $content?>

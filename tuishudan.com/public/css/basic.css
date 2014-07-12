@@ -114,6 +114,17 @@ h2 {
 	margin-top: 25px;
 	/*border: 1px solid red;*/
 }
+.login_on {
+	float: right;
+	margin-top: 25px;
+	margin-right: 40px;
+	height: 30px;
+	line-height: 30px;
+	/*margin-left: 20px;*/
+}
+.login_on span {
+	line-height: 30px;
+}
 .menu {
 	clear: both;
 	width: 980px;
