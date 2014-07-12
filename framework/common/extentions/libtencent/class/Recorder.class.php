@@ -15,17 +15,17 @@ class Recorder{
         $this->error = new ErrorCase();
 
         //-------读取配置文件
-        $incFileContents = file(ROOT."comm/inc.php");
+        $incFileContents = file(TC_ROOT."comm/inc.php");
         $incFileContents = $incFileContents[1];
         $this->inc = json_decode($incFileContents);
         if(empty($this->inc)){
             $this->error->showError("20001");
         }
 
-        if(empty($_SESSION['QC_userData'])){
+        if(empty(Yii::app()->session['QC_userData'])){
             self::$data = array();
         }else{
-            self::$data = $_SESSION['QC_userData'];
+            self::$data = Yii::app()->session['QC_userData'];
         }
     }
 
@@ -54,6 +54,7 @@ class Recorder{
     }
 
     function __destruct(){
-        $_SESSION['QC_userData'] = self::$data;
+        error_log(date("[Y-m-d H:i:s]").print_r(self::$data,true)."ddddddd\n", 3, "/tmp/php_error.log");
+        Yii::app()->session['QC_userData'] = self::$data;
     }
 }

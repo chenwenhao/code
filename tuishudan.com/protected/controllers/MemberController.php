@@ -321,13 +321,20 @@ class MemberController extends MyController
 
 	public function actionTencent_login()
 	{
-		require_once("../../API/qqConnectAPI.php");
+		require_once("libtencent/qqConnectAPI.php");
 		$qc = new QC();
 		$qc->qq_login();
 	}
 
 	public function actionTencent_back()
 	{
-		echo 1111;exit;
+        require_once("libtencent/qqConnectAPI.php");
+        $qc = new QC();
+		$acs = $qc->qq_callback();
+		$oid = $qc->get_openid();
+		$qc = new QC($acs,$oid);
+		$uinfo = $qc->get_user_info();
+        var_dump($uinfo);
+        var_dump(Yii::app()->session);exit;
 	}
 }
