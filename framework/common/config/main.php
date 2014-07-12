@@ -1,23 +1,54 @@
 <?php
 // 定义数据库配置
-if(defined('YII_DEBUG') && YII_DEBUG)
-{
-	define('DB_HOST', '127.0.0.1');
-	define('DB_USER', "root");
-	define('DB_PASSWORD', "root");
-	define('SCHEMACACHINGDURATION', 0);# 数据库缓存时间
-	define('ENABLEPROFILING', false);# 数据库缓存是否开启
+// if(defined('YII_DEBUG') && YII_DEBUG)
+// {
+// 	define('DB_HOST', '127.0.0.1');
+// 	define('DB_USER', "root");
+// 	define('DB_PASSWORD', "root");
+// 	define('SCHEMACACHINGDURATION', 0);# 数据库缓存时间
+// 	define('ENABLEPROFILING', false);# 数据库缓存是否开启
 
-	# 开发环境使用文件缓存
-	$cache = array(
-		'class' => 'CFileCache', //文件缓存
-		'cachePath' => ROOT . '/runtime/cache',// 缓存目录
-		'directoryLevel' => '1', // 缓存文件的目录深度
-	);
-	$cache_time = 0;
-}
-else
-{
+// 	# 开发环境使用文件缓存
+// 	$cache = array(
+// 		'class' => 'CFileCache', //文件缓存
+// 		'cachePath' => ROOT . '/runtime/cache',// 缓存目录
+// 		'directoryLevel' => '1', // 缓存文件的目录深度
+// 	);
+// 	$cache_time = 0;
+// }
+// else
+// {
+// 	define('DB_HOST', '110.76.46.104');
+// 	define('DB_USER', 'root');
+// 	define('DB_PASSWORD', '421023');
+	
+// 	if(defined("IS_COMMAND") && IS_COMMAND == TRUE)
+// 	{
+// 		# 脚本程序使用文件缓存，文件缓存可以避免fork子程序使用memcache的一系列问题
+// 		# 关闭数据库缓存
+// 		define('SCHEMACACHINGDURATION', 0);# 数据库缓存时间
+// 		define('ENABLEPROFILING', FALSE);# 数据库缓存是否开启
+// 		$cache = array(
+// 			'class' => 'CFileCache', //文件缓存
+// 			'cachePath' =>  ROOT.'/runtime/cache',// 缓存目录
+// 			'directoryLevel' => '1', // 缓存文件的目录深度
+// 		);
+// 		$cache_time = 0;
+// 	}
+// 	else
+// 	{
+// 		# web服务使用memcache，并开启数据库缓存
+// 		define('SCHEMACACHINGDURATION', 86400);# 数据库缓存时间
+// 		define('ENABLEPROFILING', TRUE);# 数据库缓存是否开启
+// 		$cache = array (
+// 			'class' => 'CFileCache', //文件缓存
+// 			'cachePath' => ROOT . '/runtime/cache',// 缓存目录
+// 			'directoryLevel' => '1', // 缓存文件的目录深度
+// 	   	);
+// 		$cache_time = 3600;
+// 	}
+// }
+	
 	define('DB_HOST', '127.0.0.1');
 	define('DB_USER', 'root');
 	define('DB_PASSWORD', '421023');
@@ -47,7 +78,6 @@ else
 	   	);
 		$cache_time = 3600;
 	}
-}
 
 $default_conf = array(
 	'basePath' => APP_ROOT . '/protected',
