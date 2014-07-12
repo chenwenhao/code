@@ -337,4 +337,13 @@ class MemberController extends MyController
         var_dump($uinfo);
         var_dump(Yii::app()->session);exit;
 	}
+
+	/**
+	 * 用户加书
+	 */
+	public function actionBook_add()
+	{
+		$this->css = 'book_add';
+		$this->render('book_add');
+	}
 }

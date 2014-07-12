@@ -1,0 +1,57 @@
+@CHARSET "UTF-8";
+.fsb_title {
+	margin: 75px 20px 0 0;
+	height: auto;
+}
+.f1 {
+	font-size: 28px;
+	font-weight: bold;
+}
+.f2 {
+	margin-left: 30px;
+	color: #999999;
+}
+.fsb {
+	float: left;
+	width: 480px;
+	overflow: hidden;
+	height: 148px;
+	/*margin-bottom: 20px;*/
+}
+#main {
+	margin: 30px 0 0 160px;
+}
+#main span {
+	font-size: 32px;
+	font-weight: 700;
+	color: #333333;
+}
+.text {
+	margin: 60px 0 0 30px;
+	border: 3px solid #999999;
+	width: 350px;
+	height: 45px;
+	line-height: 45px;
+}
+#main textarea {
+	margin: 60px 0 0 30px;
+	border: 3px solid #999999;
+	margin-left: 94px;
+}
+.bc {
+	position: absolute;
+	padding-top: 60px;
+}
+.submit {
+	display: block;
+	background: url('/images/submit.png') no-repeat;
+	width: 200px;
+	height: 70px;
+	border: 0;
+	margin-top: 60px;
+	margin-left: 200px;
+	color: #fff;
+	font-size: 32px;
+	font-weight: 400;
+	cursor: pointer;
+}
