@@ -48,6 +48,7 @@
 .content p {
 	padding-top: 10px;
 	width: 300px;
+	line-height: 20px;
 }
 /*.line {
 	padding-top: 20px;
