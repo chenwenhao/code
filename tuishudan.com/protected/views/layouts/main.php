@@ -27,8 +27,8 @@ if($this->css)
   </form>
   </div>
   <div class="reg_login">
-  <span class="sina"><a href="sina"><img src="/images/sina.png" width="32" height="32"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-  <span class="qq"><a href="bbb"><img src="/images/qq.png" width="32" height="32"></a></span>
+  <!-- <span class="sina"><a href="sina"><img src="/images/sina.png" width="32" height="32"></a></span>&nbsp;&nbsp;&nbsp;&nbsp; -->
+  <span class="qq"><a href="javascript::void();" onclick="toLogin();"><img src="/images/qqnew.png" width="63" height="24"></a></span>
   </div>
   <div class="menu"><img src="/images/trigon.png" /><img src="/images/hui.png" style="margin: 17px 0 0 -27px;"><span class="fsb_font">封神榜</span></div>
 </div>
@@ -43,6 +43,13 @@ $("#login_out").click(function() {
     window.location.href = json.refer;
   });
 });
+
+ function toLogin()
+ {
+   //以下为按钮点击事件的逻辑。注意这里要重新打开窗口
+   //否则后面跳转到QQ登录，授权页面时会直接缩小当前浏览器的窗口，而不是打开新窗口
+   var A=window.open("member/tencent_login","TencentLogin", "width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1");
+ } 
 </script>
 
 <?php
