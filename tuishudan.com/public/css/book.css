@@ -133,6 +133,7 @@
 }
 .book_intro {
 	margin-top: 25px;
+	line-height: 20px;
 }
 #right {
 	width: 260px;
@@ -142,6 +143,7 @@
 }
 #right dl {
 	margin-left: 10px;
+	margin-bottom:15px;
 }
 #right dl dt{
 	font-size: 16px;

@@ -31,11 +31,11 @@
 	</div>
 	<div class="mid"><img src="/images/xkan.png" />&nbsp;&nbsp;&nbsp;<img src="/images/kanguo.png"></div>
 	<div class="pj2">评价:
-		<span class="pingxing" id="px1"><i></i></span>
-		<span class="pingxing" id="px2"><i></i></span>
-		<span class="pingxing" id="px3"><i></i></span>
-		<span class="pingxing" id="px4"><i></i></span>
-		<span class="pingxing" id="px5"><i></i></span>
+		<span class="pingxing" id="px1" sorce="1"><i></i></span>
+		<span class="pingxing" id="px2" sorce="2"><i></i></span>
+		<span class="pingxing" id="px3" sorce="3"><i></i></span>
+		<span class="pingxing" id="px4" sorce="4"><i></i></span>
+		<span class="pingxing" id="px5" sorce="5"><i></i></span>
 	</div>
 	<div class="main_title"><?php echo $book->name?></div>
 	<div class="book_intro"><?php echo $book->intro?></div>
@@ -51,14 +51,23 @@
 	</dl>
 </div>
 <script>
+var book_id = <?php echo $book->id?>;
 $(function () {
-$("#px1,#px2,#px3,#px4,#px5").bind("mouseover",function(){
-  $(this).find("i").attr("style","width:100%");
-  $(this).prevAll().find("i").attr("style","width:100%");
-});
-$("#px1,#px2,#px3,#px4,#px5").bind("mouseout",function(){
-  $(this).find("i").attr("style","width:0%");
-  $(this).prevAll().find("i").attr("style","width:0%");
-});
+	$("#px1,#px2,#px3,#px4,#px5").bind("mouseover",function(){
+	  $(this).find("i").attr("style","width:100%");
+	  $(this).prevAll().find("i").attr("style","width:100%");
+	});
+	$("#px1,#px2,#px3,#px4,#px5").bind("mouseout",function(){
+	  $(this).find("i").attr("style","width:0%");
+	  $(this).prevAll().find("i").attr("style","width:0%");
+	});
+	$("#px1,#px2,#px3,#px4,#px5").bind("click",function(){
+	  $(this).find("i").attr("style","width:100%");
+	  var sorce = $(this).attr('value');
+	  $.post("/book/sorce",{sorce:sorce,book_id:book_id},
+	  function(data){
+	    alert("Data: " + data);
+	  });
+	});
 });
 </script>
