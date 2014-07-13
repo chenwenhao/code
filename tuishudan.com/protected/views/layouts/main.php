@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta property="wb:webmaster" content="4a68579cc26ed37b" />
 <meta property="qc:admins" content="26561317513054166375" />
-<title>推书单</title>
+<title><?php echo $this->pageTitle?></title>
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" type="text/css" href="/css/basic.css" />
 <?php
@@ -19,7 +19,7 @@ if($this->css)
 <div id="header">
   <div class="logo"><a href="/"><img src="/images/logo.png"></a></div>
   <dl><dd>发现分享高品质网络小说</dd><dd>tuishudan.com</dd></dl>
-  <ul><li><a href="/">发现小说</a></li><li><a href="#">我的书库</a></li></ul>
+  <ul><li><a href="/">发现小说</a></li><li><a href="/member/mybook">我的书库</a></li></ul>
   <div class="search_bg"></div>
   <div class="search_bg2">
   <form method="get" action="/search/">

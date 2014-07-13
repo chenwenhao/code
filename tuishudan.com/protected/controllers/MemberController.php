@@ -330,7 +330,54 @@ class MemberController extends MyController
 	 */
 	public function actionBook_add()
 	{
+		if (! $this->userinfo) {
+			$this->redirect('/');
+		}
+
+		// 参数
+		$is_submit = trim(Yii::app()->request->getParam('is_submit'));
+		$book_name = trim(Yii::app()->request->getParam('book_name'));
+		$url = trim(Yii::app()->request->getParam('url'));
+		$intro = trim(Yii::app()->request->getParam('intro'));
+
+		// 提交
+		if ($is_submit) {
+			if(! $book_name) {
+				$this->alert('书名不能为空');
+			}
+
+			// 查询书本是否已添加过
+			$exsit = Books::model()->getBookByName($book_name);
+			if ($exsit) {
+				$this->alert('书本已添加');
+			}
+
+			// 入库
+			$book = new Books();
+			$book->name = $book_name;
+			$book->from = $url;
+			$book->intro = $intro;
+			$book->uid = $this->userinfo->id;
+			if ($book->save()) {
+				$this->alert('添加成功，请等待审核');
+			}
+		}
+
+		$this->pageTitle = '推书单 - 用户加书';
 		$this->css = 'book_add';
 		$this->render('book_add');
+	}
+
+	/**
+	 * 我的书库
+	 */
+	public function actionMybook()
+	{
+		// 参数
+
+		$data = array();
+		$this->pageTitle = '推书单 - 我的书库';
+		$this->css = 'mybook';
+		$this->render('mybook', $data);
 	}
 }
