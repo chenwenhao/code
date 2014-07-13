@@ -32,11 +32,13 @@
 	width: 350px;
 	height: 45px;
 	line-height: 45px;
+	font-size: 20px;
 }
 #main textarea {
 	margin: 60px 0 0 30px;
 	border: 3px solid #999999;
 	margin-left: 94px;
+	font-size: 20px;
 }
 .bc {
 	position: absolute;
