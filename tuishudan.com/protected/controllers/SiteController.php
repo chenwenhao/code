@@ -33,6 +33,11 @@ class SiteController extends MyController
 		}
 
 		$data = array('book' => $book);
+
+		if (!$this->userinfo) {
+			$user_book_info = User_book::model()->getUserbook($this->userinfo['id'],$book_id);			
+		}
+
 		$this->css = 'book';
 		$this->render('book', $data);
 	}

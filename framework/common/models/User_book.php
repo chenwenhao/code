@@ -14,4 +14,16 @@ class User_book extends CActiveRecord
 	{
 		return strtolower(get_class($this));
 	}
+
+	/**
+	 * 查询用户看这本书的信息
+	 */
+	public function getUserbook($uid, $book_id)
+	{
+		$cdb = new CDbCriteria();
+		$cdb->condition = "uid = :uid AND book_id = :book_id";
+		$cdb->params = array(":uid" => $uid,":book_id" => $book_id);
+		$row = self::model()->find($cdb);
+		return $row;
+	}
 }
