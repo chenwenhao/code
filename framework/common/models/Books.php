@@ -21,4 +21,16 @@ class Books extends CActiveRecord
 			'category'=>array(self::BELONGS_TO, 'Books_category', 'category_id'),
 		);
 	}
+
+	/**
+	 * 根据书名查询书
+	 * @param varchar $book_name
+	 */
+	public static function getBookByName($book_name)
+	{
+		$cdb = new CDbCriteria();
+		$cdb->condition = "name = :name";
+		$cdb->params = array(":name" => $book_name);
+		return $row = Books::model()->find($cdb);
+	}
 }

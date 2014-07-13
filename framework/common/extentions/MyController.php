@@ -15,12 +15,6 @@ class MyController extends CController
 		parent::init();
 		
 		self::getUserinfo(); // 当然用户登录信息
-
-		// 查询顶级分类
-		$cdb = new CDbCriteria();
-		$cdb->condition = "parent_id = 0";
-		$cdb->order = "id ASC";
-		$this->nav_menu = Content_category::model()->findAll($cdb);
 	}
 
 	/**
@@ -280,5 +274,13 @@ class MyController extends CController
         // 关闭CURL会话
         curl_close($ch);
         return array('code'=>$httpcode,'content'=>$result);
+    }
+
+    /**
+     * js提示
+     */
+    public static function alert($msg)
+    {
+    	echo '<script type="text/javascript">alert(\''. $msg .'\');history.go(-1);</script>';die;
     }
 }
