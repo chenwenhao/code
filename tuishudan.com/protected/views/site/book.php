@@ -29,13 +29,21 @@
 			<p><span class="vote-star"><i style="width:75%"></i></span><span class="jdt" style="width:34px;"></span><span class="percent">89%</span></p>
 		</div>
 	</div>
-	<div class="mid"><img src="/images/xkan.png" />&nbsp;&nbsp;&nbsp;<img src="/images/kanguo.png"></div>
+	<div class="mid">
+		<?php if($user_book_info->status == 1):?>
+		<img src="/images/xkan.png" />
+		<?php elseif ($user_book_info->status == 2):?>
+			<img src="/images/kanguo.png">
+		<?php else: ?>
+			<img src="/images/xkan.png" />&nbsp;&nbsp;&nbsp;<img src="/images/kanguo.png">
+		<?php endif;?>
+	</div>
 	<div class="pj2">评价:
-		<span class="pingxing" id="px1" sorce="1"><i></i></span>
-		<span class="pingxing" id="px2" sorce="2"><i></i></span>
-		<span class="pingxing" id="px3" sorce="3"><i></i></span>
-		<span class="pingxing" id="px4" sorce="4"><i></i></span>
-		<span class="pingxing" id="px5" sorce="5"><i></i></span>
+		<span class="pingxing" id="px1" <?php if($user_book_info->sorce >= 1):?>style="width:100%"<?php endif;?> sorce="1"><i></i></span>
+		<span class="pingxing" id="px2" <?php if($user_book_info->sorce >= 2):?>style="width:100%"<?php endif;?> sorce="2"><i></i></span>
+		<span class="pingxing" id="px3" <?php if($user_book_info->sorce >= 3):?>style="width:100%"<?php endif;?> sorce="3"><i></i></span>
+		<span class="pingxing" id="px4" <?php if($user_book_info->sorce >= 4):?>style="width:100%"<?php endif;?> sorce="4"><i></i></span>
+		<span class="pingxing" id="px5" <?php if($user_book_info->sorce >= 5):?>style="width:100%"<?php endif;?>sorce="5"><i></i></span>
 	</div>
 	<div class="main_title"><?php echo $book->name?></div>
 	<div class="book_intro"><?php echo $book->intro?></div>
@@ -50,6 +58,7 @@
 		<dd>1分，呵呵</dd>
 	</dl>
 </div>
+<?php if (!empty($user_book_info->status)):?>
 <script>
 var book_id = <?php echo $book->id?>;
 $(function () {
@@ -71,3 +80,4 @@ $(function () {
 	});
 });
 </script>
+<?php endif;?>

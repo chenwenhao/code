@@ -24,6 +24,7 @@ class SiteController extends MyController
 	public function actionBook()
 	{
 		// 参数
+		$data = array();
 		$book_id = intval(Yii::app()->request->getParam('book_id'));
 
 		// 判断书是否存在
@@ -31,11 +32,10 @@ class SiteController extends MyController
 		if (!$book || !$book_id) {
 			$this->redirect('/');
 		}
-
-		$data = array('book' => $book);
-
+		$data['book'] = $book;
 		if (!$this->userinfo) {
-			$user_book_info = User_book::model()->getUserbook($this->userinfo['id'],$book_id);			
+			$user_book_info = User_book::model()->getUserbook($this->userinfo['id'],$book_id);
+			$data['user_book_info']	 = $user_book_info;
 		}
 
 		$this->css = 'book';
