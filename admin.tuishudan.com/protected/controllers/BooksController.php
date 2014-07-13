@@ -18,6 +18,7 @@ class BooksController extends Controller
 		$page = intval(Yii::app()->request->getParam('pageNum')) - 1;
 		$name = trim(Yii::app()->request->getParam('name'));
 		$author = trim(Yii::app()->request->getParam('author'));
+		$status = trim(Yii::app()->request->getParam('status'));
 
 		// 查询数据
 		$cdb = new CDbCriteria();
@@ -31,6 +32,13 @@ class BooksController extends Controller
 			$cdb->addCondition("author = :author");
 			$cdb->params = array(":author" => $author);
 		}
+		if ($status == 'no') {
+			$cdb->addCondition("status = 0");
+		}
+		if ($status == 'yes') {
+			$cdb->addCondition("status = 1");
+		}
+		
 		$cdb->order = "create_time DESC";
 
 		// 分页
@@ -197,12 +205,9 @@ class BooksController extends Controller
 				$this->alert_error();
 			}
 		}
-
-		// 查询所有书本分类
-		$categorys = Books_category::model()->findAll();
 		
 		// 显示
-		$data = array('categorys' => $categorys, 'row' => $row);
+		$data = array('row' => $row);
 		$this->renderPartial('edit', $data);
 	}
 

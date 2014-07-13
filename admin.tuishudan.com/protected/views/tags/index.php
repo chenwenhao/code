@@ -1,7 +1,6 @@
 <form id="pagerForm" method="post" action="<?php echo Yii::app()->request->requestUri?>">
   <input type="hidden" name="pageNum" value="<?php echo $pages->currentPage + 1?>"/>
-  <input type="hidden" name="name" value="<?php echo $name?>"/>
-  <input type="hidden" name="author" value="<?php echo $author?>"/>
+  <input type="hidden" name="tag_name" value="<?php echo $tag_name?>" />
 </form>
 <div class="page">
   <div class="pageContent">
@@ -12,11 +11,8 @@
           <table class="searchContent">
             <tbody>
               <tr>
-                <td>书名：
-                  <input type="text" name="name" class="textInput" value="<?php echo $name?>">
-                </td>
-                <td>作者：
-                  <input type="text" name="author" class="textInput" value="<?php echo $author?>">
+                <td>标签名：
+                  <input type="text" name="tag_name" class="textInput" value="<?php echo $tag_name?>">
                 </td>
                 <td><div class="subBar">
                     <ul>
@@ -29,8 +25,6 @@
                       </li>
                     </ul>
                   </div></td>
-                  <td><a href="/books/index?status=no" target="navTab">未审核的书</a></td>
-                  <td><a href="/books/index?status=yes" target="navTab">已审核的书</a></td>
               </tr>
             </tbody>
           </table>
@@ -42,7 +36,7 @@
     <div class="panelBar">
       <ul class="toolBar">
         <li>
-          <a target="dialog" href="/books/add" class="add" height="500">
+          <a target="dialog" href="/tags/add" class="add" height="500">
             <span>添加</span>
           </a>
         </li>
@@ -53,16 +47,8 @@
       <thead>
         <tr>
           <th width="50">ID</th>
-          <th>书名</th>
-          <th>作者</th>
-          <th>封面图</th>
-          <th>来源</th>
-          <th>状态</th>
-          <th>标签</th>
-          <th>评论数</th>
-          <th>是否审核</th>
-          <th>添加时间</th>
-          <th>添加人</th>
+          <th>标签名</th>
+          <th>书本数量</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -70,26 +56,9 @@
         <?php foreach($rows as $row):?>
         <tr target="id" rel="<?php echo $row->id?>">
           <td><?php echo $row->id?></td>
-          <td><a height="500" target="dialog" href="/books/edit?id=<?php echo $row->id?>" name="<?php echo strip_tags($row->name);?>"><?php echo $row->name?></a></td>
-          <td><?php echo $row->author?></td>
+          <td><?php echo $row->tag_name?></td>
+          <td><?php echo $row->num?></td>
           <td>
-            <?php
-            if($row->cover_img)
-            {
-              echo '<a href="'. Yii::app()->params['cover_img_url'] . $row->cover_img .'" target="_blank"><img src="'. Yii::app()->params['cover_img_url'] . $row->cover_img .'" width="100" height="50" /></a>';
-            }
-            ?>
-          </td>
-          <td><?php echo $row->from?></td>
-          <td><?php echo $row->status?></td>
-          <td><?php echo $row->tag?></td>
-          <td><?php echo $row->comment_times?></td>
-          <td><?php if($row->checked){echo '是';}else{echo '<span style="color:red;">否</span>';}?></td>
-          <td><?php echo $row->create_time?></td>
-          <td><?php echo $row->uid?></td>
-          <td>
-            <a target="dialog" href="/books/edit?id=<?php echo $row->id?>" height="500">修改</a>
-            <a target="ajaxToDo" href="/books/delete?id=<?php echo $row->id?>" name="确定删除吗？">删除</a>
           </td>
         </tr>
         <?php endforeach;?>
