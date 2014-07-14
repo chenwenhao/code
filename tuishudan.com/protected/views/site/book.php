@@ -29,22 +29,36 @@
 			<p><span class="vote-star"><i style="width:75%"></i></span><span class="jdt" style="width:34px;"></span><span class="percent">89%</span></p>
 		</div>
 	</div>
-	<div class="mid">
-		<?php if($user_book_info->status == 1):?>
-		<img src="/images/xkan.png" />
-		<?php elseif ($user_book_info->status == 2):?>
-			<img src="/images/kanguo.png">
-		<?php else: ?>
-			<img src="/images/xkan.png" />&nbsp;&nbsp;&nbsp;<img src="/images/kanguo.png">
-		<?php endif;?>
+
+	<?php if(isset($user_book_info->status) && $user_book_info->status == 2):?>
+	<div id="my_book_info" style="clear:both;margin-top:30px;height:20px;width:200px;" class="mid">我在看这本书<a href="###" onclick="edit_user_book('my_user_book','edit_user_book')" style="padding-left:10px;color:#25539e;">修改</a> <span style="padding-left:10px;color:#999999;">删除</span></div>
+	<?php elseif (isset($user_book_info->status) && $user_book_info->status == 1):?>
+	<div id="my_book_info">
+	<div style="clear:both;margin-top:30px;height:20px;width:200px;" class="mid">我看过这本书<a href="###" onclick="edit_user_book('my_user_book','edit_user_book')" style="padding-left:10px;color:#25539e;">修改</a> <a href="###" style="padding-left:10px;color:#999999;"  onclick="del_userbook()">删除</a></div>
+	<div style="float:left;clear:both;">我的评价:
+		<span class="pingxing"><i <?php if(isset($user_book_info->score) && $user_book_info->score >= 1):?>style="width:100%"<?php endif;?> ></i></span>
+		<span class="pingxing"><i <?php if(isset($user_book_info->score) && $user_book_info->score >= 2):?>style="width:100%"<?php endif;?> ></i></span>
+		<span class="pingxing"><i <?php if(isset($user_book_info->score) && $user_book_info->score >= 3):?>style="width:100%"<?php endif;?> ></i></span>
+		<span class="pingxing"><i <?php if(isset($user_book_info->score) && $user_book_info->score >= 4):?>style="width:100%"<?php endif;?> ></i></span>
+		<span class="pingxing"><i <?php if(isset($user_book_info->score) && $user_book_info->score >= 5):?>style="width:100%"<?php endif;?> ></i></span>
+	</div>
+	</div>
+	<?php else: ?>
+
+    <?php endif;?>
+    <div id="edit_book_info" <?php if(isset($user_book_info->status)):?>style="display:none;"<?php endif;?>>
+	<div class="mid" >
+		<a href="###" id="reading_book" ><img src="/images/xkan.png"/></a><a href="###" style="padding-left:15px;"><img src="/images/kanguo.png"></a>
 	</div>
 	<div class="pj2">评价:
-		<span class="pingxing" id="px1" <?php if($user_book_info->sorce >= 1):?>style="width:100%"<?php endif;?> sorce="1"><i></i></span>
-		<span class="pingxing" id="px2" <?php if($user_book_info->sorce >= 2):?>style="width:100%"<?php endif;?> sorce="2"><i></i></span>
-		<span class="pingxing" id="px3" <?php if($user_book_info->sorce >= 3):?>style="width:100%"<?php endif;?> sorce="3"><i></i></span>
-		<span class="pingxing" id="px4" <?php if($user_book_info->sorce >= 4):?>style="width:100%"<?php endif;?> sorce="4"><i></i></span>
-		<span class="pingxing" id="px5" <?php if($user_book_info->sorce >= 5):?>style="width:100%"<?php endif;?>sorce="5"><i></i></span>
+		<span class="pingxing" id="px1" score="1"><i></i></span>
+		<span class="pingxing" id="px2" score="2"><i></i></span>
+		<span class="pingxing" id="px3" score="3"><i></i></span>
+		<span class="pingxing" id="px4" score="4"><i></i></span>
+		<span class="pingxing" id="px5" score="5"><i></i></span>
 	</div>
+	</div>
+
 	<div class="main_title"><?php echo $book->name?></div>
 	<div class="book_intro"><?php echo $book->intro?></div>
 </div>
@@ -58,9 +72,9 @@
 		<dd>1分，呵呵</dd>
 	</dl>
 </div>
-<?php if (!empty($user_book_info->status)):?>
+
 <script>
-var book_id = <?php echo $book->id?>;
+var book_id = <?php echo $book->id;?>;
 $(function () {
 	$("#px1,#px2,#px3,#px4,#px5").bind("mouseover",function(){
 	  $(this).find("i").attr("style","width:100%");
@@ -72,12 +86,46 @@ $(function () {
 	});
 	$("#px1,#px2,#px3,#px4,#px5").bind("click",function(){
 	  $(this).find("i").attr("style","width:100%");
-	  var sorce = $(this).attr('value');
-	  $.post("/book/sorce",{sorce:sorce,book_id:book_id},
+	  var score = $(this).attr('score');
+	  $.getJSON("/book/score",{score:score,book_id:book_id},
 	  function(data){
-	    alert("Data: " + data);
+	  	alert(data.msg);
+	  	window.location.reload();
+	  });
+	});
+	$("#reading_book").bind("click",function(){
+	  $.getJSON("/book/score",{score:0,book_id:book_id},
+	  function(data){
+	  	alert(data.msg);
+	  	window.location.reload();
 	  });
 	});
 });
+function del_userbook() {
+	$.getJSON("/book/del_score",{book_id:book_id},
+  	function(data){
+  		alert(data.msg);
+  		window.location.reload();
+  	});
+}
+function id_hide_show(id1,id2) {
+	if ($("#"+id1).is(":hidden")) {
+		$("#"+id1).show();
+		$("#"+id2).hide();
+	}
+	if ($("#"+id2).is(":hidden")) {
+		$("#"+id2).show();
+		$("#"+id1).hide();
+	}
+}
+function edit_user_book() {
+	if ($("#my_book_info").is(":hidden")) {
+		$("#my_book_info").show();
+		$("#edit_book_info").hide();
+	}
+	if ($("#edit_book_info").is(":hidden")) {
+		$("#edit_book_info").show();
+		$("#my_book_info").hide();
+	}
+}
 </script>
-<?php endif;?>
