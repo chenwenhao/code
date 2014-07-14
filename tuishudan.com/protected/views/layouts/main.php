@@ -76,5 +76,12 @@ if($this->js)
   echo '<script type="text/javascript" src="/js/'. $this->js .'.js"></script>';
 }
 ?>
+<!-- baidu tongji -->
+<span style="display:none">
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fce1a8ecf99017c231cf872d4aa62e7d4' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</span>
 </body>
 </html>
