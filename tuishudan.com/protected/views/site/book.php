@@ -31,7 +31,7 @@
 	</div>
 
 	<?php if(isset($user_book_info->status) && $user_book_info->status == 2):?>
-	<div id="my_book_info" style="clear:both;margin-top:30px;height:20px;width:200px;" class="mid">我在看这本书<a href="###" onclick="edit_user_book('my_user_book','edit_user_book')" style="padding-left:10px;color:#25539e;">修改</a> <span style="padding-left:10px;color:#999999;">删除</span></div>
+	<div id="my_book_info" style="clear:both;margin-top:30px;height:20px;width:200px;" class="mid">我在看这本书<a href="###" onclick="edit_user_book('my_user_book','edit_user_book')" style="padding-left:10px;color:#25539e;">修改</a> <a href="###" style="padding-left:10px;color:#999999;"  onclick="del_userbook()">删除</a></div>
 	<?php elseif (isset($user_book_info->status) && $user_book_info->status == 1):?>
 	<div id="my_book_info">
 	<div style="clear:both;margin-top:30px;height:20px;width:200px;" class="mid">我看过这本书<a href="###" onclick="edit_user_book('my_user_book','edit_user_book')" style="padding-left:10px;color:#25539e;">修改</a> <a href="###" style="padding-left:10px;color:#999999;"  onclick="del_userbook()">删除</a></div>
