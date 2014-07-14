@@ -4,8 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta property="wb:webmaster" content="4a68579cc26ed37b" />
 <meta property="qc:admins" content="26561317513054166375" />
+<link rel="shortcut icon" href="/images/favicon.ico" />
 <title><?php echo $this->pageTitle?></title>
-<link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" type="text/css" href="/css/basic.css" />
 <?php
 if($this->css)
