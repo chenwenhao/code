@@ -55,6 +55,7 @@
           <th width="50">ID</th>
           <th>书名</th>
           <th>作者</th>
+          <th>主角</th>
           <th>封面图</th>
           <th>来源</th>
           <th>状态</th>
@@ -72,6 +73,7 @@
           <td><?php echo $row->id?></td>
           <td><a height="500" target="dialog" href="/books/edit?id=<?php echo $row->id?>" name="<?php echo strip_tags($row->name);?>"><?php echo $row->name?></a></td>
           <td><?php echo $row->author?></td>
+          <td><?php echo $row->lead?></td>
           <td>
             <?php
             if($row->cover_img)

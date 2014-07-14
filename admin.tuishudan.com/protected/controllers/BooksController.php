@@ -73,6 +73,7 @@ class BooksController extends Controller
 		$checked = intval(Yii::app()->request->getParam('checked'));
 		$tag = trim(Yii::app()->request->getParam('tag'));
 		$intro = trim(Yii::app()->request->getParam('intro'));
+		$lead = trim(Yii::app()->request->getParam('lead'));
 
 		// 提交
 		if($is_submit)
@@ -106,6 +107,7 @@ class BooksController extends Controller
 			$row->checked = $checked;
 			$row->tag = $tag;
 			$row->intro = $intro;
+			$row->lead = $lead;
 
 			if($row->save())
 			{
@@ -143,6 +145,7 @@ class BooksController extends Controller
 		$checked = intval(Yii::app()->request->getParam('checked'));
 		$tag = trim(Yii::app()->request->getParam('tag'));
 		$intro = trim(Yii::app()->request->getParam('intro'));
+		$lead = trim(Yii::app()->request->getParam('lead'));
 
 		// 查询当前修改记录
 		$row = Books::model()->findByPk($id);
@@ -191,6 +194,7 @@ class BooksController extends Controller
 			$row->tag = $tag;
 			$row->intro = $intro;
 			$row->cover_img = $cover_img;
+			$row->lead = $lead;
 			if($row->save())
 			{
 				if ($tag && $tag != $old_tag) {
