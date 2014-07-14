@@ -11,6 +11,10 @@
         <input type="text" name="author" size="30" class="required textInput" />
       </div>
       <div class="unit">
+        <label>主角：</label>
+        <input type="text" name="lead" size="30" class="textInput" />
+      </div>
+      <div class="unit">
         <label>封面图：</label>
         <input type="file" name="cover_img" />
       </div>

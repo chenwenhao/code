@@ -7,21 +7,12 @@ class MemberController extends MyController
 {
 	public function init()
 	{
-		//Yii::app()->layout = '//layouts/member';
 		$this->userinfo = $this->getUserinfo();
 	}
 
-	/** 
-	 * 注册显示
+	/**
+	 * 注册
 	 */
-	public function actionRegister()
-	{
-		$this->css = 'register';
-		$this->js = 'register';
-		// 显示
-		$this->render('register');
-	}
-
 	public function actionRegister_submit()
 	{
 		// 参数
@@ -77,23 +68,6 @@ class MemberController extends MyController
 	}
 
 	/**
-	 * 登陆页面
-	 */
-	public function actionLogin()
-	{
-		if(!$this->userinfo)
-		{
-			$this->css = 'login';
-			$this->js = 'login';
-			$this->render('login');
-		}
-		else
-		{
-			$this->redirect('/');
-		}
-	}
-
-	/**
 	 * 登录提交
 	 */
 	public function actionLogin_submit()
@@ -126,94 +100,6 @@ class MemberController extends MyController
 		else
 		{
 			$this->jsonp(false, '登录失败');
-		}
-	}
-
-	/**
-	 * 我的账户
-	 */
-	public function actionMine()
-	{
-		if(!$this->userinfo)
-		{
-			$this->redirect('/');
-		}
-
-		$this->css = 'mine';
-		$this->render('mine');
-	}
-
-	/*
-	 修改资料-显示
-	 */
-	public function actionProfile_edit()
-	{
-		if(!$this->userinfo)
-		{
-			$this->redirect('/');
-		}
-
-		$row = User::model()->findByPk($this->userinfo->id);
-		if(!$row)
-		{
-			$this->redirect('/');
-		}
-
-		$data['row'] = $row;
-		$this->css = 'profile_edit';
-		$this->js = 'profile_edit';
-		$this->render('profile_edit', $data);
-	}
-	
-
-	/**
-	 * 修改资料-提交
-	 */
-	public function actionProfile_edit_submit()
-	{
-		// 参数
-		$user_id = intval(Yii::app()->request->getParam('user_id'));
-		$password = Yii::app()->request->getParam('password');
-		$email = trim(Yii::app()->request->getParam('email'));
-		$avatar = trim(Yii::app()->request->getParam('avatar'));
-		$name = trim(Yii::app()->request->getParam('name'));
-
-		$row = User::model()->findByPk($user_id);
-		if(!$row)
-		{
-			$this->jsonp(false, '账号不存在');
-		}
-
-		// 提交
-		if(!$password)
-		{
-			$password = $row->password;
-		}
-		else
-		{
-			$password = $this->hash_password($password);
-		}
-
-		if($avatar)
-		{
-			$avatar = $avatar;
-		}
-		else
-		{
-			$avatar = $row->avatar;
-		}
-
-		$row->name = $name;
-		$row->password = $password;
-		$row->email = $email;
-		$row->avatar = $avatar;
-		if($row->save())
-		{
-			$this->jsonp(true);
-		}
-		else
-		{
-			$this->jsonp(false, '修改失败');
 		}
 	}
 
@@ -321,8 +207,6 @@ class MemberController extends MyController
 		if ($uinfo) {
 			$this->redirect('/member/register_submit?openid='. $oid .'&nickname='. $uinfo['nickname'] .'&gender='. $uinfo['gender'] .'&login_msg='. $login_msg . '&refer='. $refer . '&avatar='. $uinfo['figureurl']);
 		}
-        // var_dump($uinfo);
-        // var_dump(Yii::app()->session);exit;
 	}
 
 	/**
@@ -374,7 +258,6 @@ class MemberController extends MyController
 	public function actionMybook()
 	{
 		// 参数
-
 		$data = array();
 		$this->pageTitle = '推书单 - 我的书库';
 		$this->css = 'mybook';

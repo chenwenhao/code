@@ -14,6 +14,7 @@ class Roles
 					'name'=>'内容管理',
 					'submenu'=>array(
 						array('name'=>'书本管理', 'path'=>'books/index', 'rel'=>'booksindex', 'role'=>array(3)),
+						array('name'=>'标签管理', 'path'=>'tags/index', 'rel'=>'tagsindex', 'role'=>array(3)),
 					),
 				),
 			),
