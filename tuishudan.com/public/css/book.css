@@ -27,16 +27,28 @@
 .content {
 	margin-left: 30px;
 	float: left;
+	width: 165px;
 }
 .content dl dt {
 	line-height: 30px;
 	height: 30px;
 }
-.content dl dt span {
-	background: url('/images/u37.png');
+.content dl dt div {
+	position: relative;
+	margin-top: -27px;
+	width: 110px;
+	margin-left: 15px;
+}
+.content dl dt div span{
+	background: url('/images/u37.png') no-repeat;
 	width: 31px;
 	height: 20px;
 	font-size: 12px;
+	float: right;
+	padding-left: 10px;
+	color: #3876AF;
+	font-weight: 200;
+	line-height: 20px;
 }
 .pj {
 	width: 200px;

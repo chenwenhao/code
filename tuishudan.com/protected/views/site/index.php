@@ -22,4 +22,4 @@
 	<div class="line"><img src="/images/line.png" /></div>
 	<?php endif;?>
 <?php endforeach;?>
-</div>
+</div><div class="line"><img src="/images/line.png" /></div>

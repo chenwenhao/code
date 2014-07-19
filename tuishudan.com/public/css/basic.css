@@ -153,10 +153,9 @@ h2 {
 	clear:both;
 }
 #footer {
-	clear: both;
 	height: 50px;
 	width: 980px;
-	border: 1px solid #fff;
+	/*border: 1px solid red;*/
 	margin-top: 20px;
 }
 #footer p {

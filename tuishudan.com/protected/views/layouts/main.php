@@ -41,6 +41,7 @@ if($this->css)
   <div class="menu"><img src="/images/trigon.png" class="current"/><img src="/images/hui.png" class="fsb_font_1"><span class="fsb_font">封神榜</span></div>
 </div>
 <?php echo $content?>
+<div id="clear_both"></div>
 <div id="footer">
   <p>© 2014 tuishudan.com, all rights reserved    <a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备14025332号</a></p>
 </div>

@@ -6,7 +6,7 @@
 		<div class="content">
 			<dl>
 				<dt>作者：<?php echo $book->author?></dt>
-				<dt>标签：
+				<dt>标签：<div>
 				<?php
 				if ($book->tag) {
 					$tag_arr = explode(',', $book->tag);
@@ -14,7 +14,7 @@
 						echo '<span>'. $value .'</span> ';
 					}
 				}
-				?>
+				?></div>
 				</dt>
 				<!-- <dt>主角：</dt> -->
 				<dt>来自：起点</dt>	
@@ -48,7 +48,7 @@
     <?php endif;?>
     <div id="edit_book_info" <?php if(isset($user_book_info->status)):?>style="display:none;"<?php endif;?>>
 	<div class="mid" >
-		<a href="###" id="reading_book" ><img src="/images/xkan.png"/></a><a href="###" style="padding-left:15px;"><img src="/images/kanguo.png"></a>
+		<a href="###" id="reading_book" ><img src="/images/zkan.png"/></a><a href="###" style="padding-left:15px;"><img src="/images/kanguo.png"></a>
 	</div>
 	<div class="pj2">评价:
 		<span class="pingxing" id="px1" score="1"><i></i></span>
