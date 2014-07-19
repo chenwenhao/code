@@ -23,6 +23,7 @@ class MemberController extends MyController
 		$login_msg = Yii::app()->request->getParam('login_msg');
 		$refer = trim(Yii::app()->request->getParam('refer'));
 		$avatar = trim(Yii::app()->request->getParam('avatar'));
+		$login_from = Yii::app()->request->getParam('login_from');
 
 		// 提交
 		if(!$openid || !$nickname || !$gender)
@@ -51,6 +52,7 @@ class MemberController extends MyController
 		$row->gender = $gender;
 		$row->login_msg = $login_msg;
 		$row->avatar = $avatar;
+		$row->login_from = $login_from;
 		if($row->save())
 		{
 			// 注册成功后直接登录
@@ -164,8 +166,17 @@ class MemberController extends MyController
 	{
         require 'libweibo/config.php';
         require 'libweibo/saetv2.ex.class.php';
-		$o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
 
+		$o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
+		$code_url = $o->getAuthorizeURL( WB_CALLBACK_URL );
+		$this->redirect($code_url);
+	}
+
+	public function actionSina_back()
+	{
+		require 'libweibo/config.php';
+        require 'libweibo/saetv2.ex.class.php';
+        $o = new SaeTOAuthV2( WB_AKEY , WB_SKEY );
 		if (isset($_REQUEST['code'])) {
 			$keys = array();
 			$keys['code'] = $_REQUEST['code'];
@@ -177,11 +188,24 @@ class MemberController extends MyController
 		}
 
 		if ($token) {
-			$_SESSION['token'] = $token;
-			setcookie( 'weibojs_'.$o->client_id, http_build_query($token) );
-			echo 111;exit();
-		} else {
-			echo 2222;exit();
+			Yii::app()->session['wb_token'] = $token;
+
+			$c = new SaeTClientV2( WB_AKEY , WB_SKEY ,$token['access_token']);
+			$uid_get = $c->get_uid();
+			$uid = $uid_get['uid'];
+			$uinfo = $c->show_user_by_id($uid);//根据ID获取用户等基本信息
+			$login_msg = json_encode($uinfo);
+			$refer = urlencode('http://www.tuishudan.com');
+			if ($uinfo) {
+				$url = '/member/register_submit?openid=';
+				$url .= $uid .'&nickname='. $uinfo['name'];
+				$url .= '&gender='. $uinfo['gender'];
+				$url .= '&login_msg='. $login_msg;
+				$url .= '&refer='. $refer;
+				$url .='&avatar='. $uinfo['profile_image_url'];
+				$url .='&login_from=2';
+				$this->redirect($url);
+			}
 		}
 	}
 
@@ -205,7 +229,7 @@ class MemberController extends MyController
 		$login_msg = json_encode($uinfo);
 
 		if ($uinfo) {
-			$this->redirect('/member/register_submit?openid='. $oid .'&nickname='. $uinfo['nickname'] .'&gender='. $uinfo['gender'] .'&login_msg='. $login_msg . '&refer='. $refer . '&avatar='. $uinfo['figureurl']);
+			$this->redirect('/member/register_submit?openid='. $oid .'&nickname='. $uinfo['nickname'] .'&gender='. $uinfo['gender'] .'&login_msg='. $login_msg . '&refer='. $refer . '&avatar='. $uinfo['figureurl'].'&login_from=1');
 		}
 	}
 
