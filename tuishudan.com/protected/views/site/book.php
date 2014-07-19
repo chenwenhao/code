@@ -5,8 +5,8 @@
 		<div class="pic"><img src="<?php echo Yii::app()->params['cover_img_url'] . $book->cover_img?>" title="<?php echo $book->name?>" width="120" height="150"></div>
 		<div class="content">
 			<dl>
-				<dt>作者：<?php echo $book->author?></dt>
-				<dt>标签：<div>
+				<dd>作者：<?php echo $book->author?></dd>
+				<dd>标签：<div>
 				<?php
 				if ($book->tag) {
 					$tag_arr = explode(',', $book->tag);
@@ -15,10 +15,10 @@
 					}
 				}
 				?></div>
-				</dt>
-				<!-- <dt>主角：</dt> -->
-				<dt>来自：起点</dt>	
-				<dt><?php echo Yii::app()->params['book_status'][$book->status]?> <!-- (2007) --></dt>
+				</dd>
+				<!-- <dd>主角：</dd> -->
+				<dd>来自：起点</dd>	
+				<dd><?php echo Yii::app()->params['book_status'][$book->status]?> <!-- (2007) --></dd>
 			</dl>
 		</div>
 		<div class="pj">
