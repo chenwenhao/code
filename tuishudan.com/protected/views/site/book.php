@@ -1,3 +1,4 @@
+<div>
 <div id="left">
 	<p class="title"><?php echo $book->name?></p>
 	<hr>
@@ -72,7 +73,7 @@
 		<dd>1分，呵呵</dd>
 	</dl>
 </div>
-
+</div>
 <script>
 var book_id = <?php echo $book->id;?>;
 $(function () {

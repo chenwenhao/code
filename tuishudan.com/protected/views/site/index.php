@@ -18,8 +18,5 @@
 	        <p class="desc"><?php echo mb_substr($row->intro, 0, 350, 'utf8')?>……</p>
 	    </div>
 	</div>
-	<?php if(($key+1) % 2 == 0):?>
-	<div class="line"><img src="/images/line.png" /></div>
-	<?php endif;?>
 <?php endforeach;?>
-</div><div class="line"><img src="/images/line.png" /></div>
+</div>

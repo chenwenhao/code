@@ -281,8 +281,31 @@ class MemberController extends MyController
 	 */
 	public function actionMybook()
 	{
-		// 参数
-		$data = array();
+		// if (!$this->userinfo) {
+		// 	$this->alert('请先登录');
+		// }
+		
+		$page = intval(Yii::app()->request->getParam('page', 1)) - 1;
+		$like = trim(Yii::app()->request->getParam('like'));
+
+		$cdb = new CDbCriteria();
+		if ($like == 'yes') {
+			$cdb->condition = "score > 1";
+		}
+		if ($like == 'no') {
+			$cdb->condition = "score <= 1";
+		}
+
+		// 分页
+		$count = User_book::model()->count($cdb);
+		$pages = new CPagination($count);
+		$pages->pageSize = 2;
+		$pages->currentPage = $page;
+		$pages->applyLimit($cdb);
+		$rows = User_book::model()->findAll($cdb);
+
+		// 显示
+		$data = array('rows' => $rows, 'pages' => $pages, 'page' => $page, 'like' => $like, 'count' => $count);
 		$this->pageTitle = '推书单 - 我的书库';
 		$this->css = 'mybook';
 		$this->render('mybook', $data);

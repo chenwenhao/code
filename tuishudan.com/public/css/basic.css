@@ -167,3 +167,13 @@ h2 {
 	text-decoration: none;
 	color: #999;
 }
+
+
+/*翻页控件*/
+#list_pagecut{height:22px;padding:25px 0px 8px;clear:both;text-align:center;}
+#yw0{display:inline-block;*display:inline;zoom:1;font-family:Tahoma;}
+#yw0 li{float:left;display:inline;background:none !important;border:none !important; padding-left:8px !important;zoom:1;}
+#yw0 li a,.pager div span{height:20px;line-height:20px;padding:0 7px;background:#fff;border:1px solid #00495e;color:#00495e; text-decoration: none;}
+#yw0 li a:hover {background:#00495e;border-color:#00495e;color:#fff;text-decoration:none;}
+#yw0 .selected a{background:#00495e;color:#fff;border:1px solid #00495e;}
+#yw0 .last{*margin-top:5px;height:30px;}

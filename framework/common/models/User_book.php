@@ -15,6 +15,13 @@ class User_book extends CActiveRecord
 		return strtolower(get_class($this));
 	}
 
+	public function relations()
+	{
+		return array(
+			'book'=>array(self::BELONGS_TO, 'Books', 'book_id'),
+		);
+	}
+
 	/**
 	 * 查询用户看这本书的信息
 	 */
