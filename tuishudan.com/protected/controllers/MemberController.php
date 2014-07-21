@@ -281,19 +281,23 @@ class MemberController extends MyController
 	 */
 	public function actionMybook()
 	{
-		// if (!$this->userinfo) {
-		// 	$this->alert('请先登录');
-		// }
+		if (!$this->userinfo) {
+			$this->alert('请先登录');
+		}
 		
 		$page = intval(Yii::app()->request->getParam('page', 1)) - 1;
 		$like = trim(Yii::app()->request->getParam('like'));
 
+		if (!$like) {
+			$like = 'yes';
+		}
+
 		$cdb = new CDbCriteria();
 		if ($like == 'yes') {
-			$cdb->condition = "score > 1";
+			$cdb->condition = "status = 2";
 		}
 		if ($like == 'no') {
-			$cdb->condition = "score <= 1";
+			$cdb->condition = "status = 1";
 		}
 
 		// 分页

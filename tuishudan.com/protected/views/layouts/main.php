@@ -34,8 +34,7 @@ if($this->css)
   }
   else
   {
-    //echo '<div class="reg_login"><span class="qq"><a href="/member/tencent_login"><img src="/images/qqnew.png" width="63" height="24" style="margin:4px;"></a></span></div>';
-    echo '<div class="reg_login"><span class="qq"><a href="/member/sina_login"><img src="/images/weibo_login.png" width="86" height="18" style="margin:4px;"></a></span></div>';
+    echo '<div class="reg_login"><span class="sina"><a href="/member/sina_login"><img src="/images/sina.png" width="32" height="32"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="qq"><a href="/member/tencent_login"><img src="/images/qq.png" width="32" height="32"></a></span></div>';
   }
   ?>
   
