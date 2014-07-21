@@ -20,9 +20,11 @@ class BookController extends MyController
 			$this->jsonp(false, '书本不存在');
 		}
 
-		$status = 2;
-		if ($score > 0) {
+		if (in_array($score, array(1, 2))) {
 			$status = 1;
+		}
+		if (in_array($score, array(3, 4, 5))) {
+			$status = 2;
 		}
 
 		$cdb = new CDbCriteria();
