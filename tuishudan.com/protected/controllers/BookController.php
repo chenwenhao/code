@@ -39,10 +39,15 @@ class BookController extends MyController
 		$user_book->score = $score;
 		$user_book->status = $status;
 		$user_book->add_time = time();
+		if ($status == 2) {
+			$msg = "标记";
+		}else {
+			$msg = "评分";
+		}
 		if ($user_book->save()) {
-			$this->jsonp(true, '评分成功');
+			$this->jsonp(true, $msg.'成功');
 		} else {
-			$this->jsonp(false, '评分失败');
+			$this->jsonp(false, $msg.'失败');
 		}
 	}
 

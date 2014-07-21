@@ -43,7 +43,7 @@ if($this->css)
 </div>
 <?php echo $content?>
 <div id="clear_both"></div>
-<div style="margin-top: 20px;"><img src="/images/line.png"></div>
+<div style="margin-top: 60px;"><img src="/images/line.png"></div>
 <div id="footer">
   <p>© 2014 tuishudan.com, all rights reserved    <a href="http://www.miitbeian.gov.cn/" target="_blank">沪ICP备14025332号</a></p>
 </div>
