@@ -46,9 +46,11 @@
 	color: #999999;
 }
 .content p {
-	padding-top: 10px;
+	padding-top: 5px;
 	width: 300px;
 	line-height: 20px;
+	overflow: hidden;
+	height: 80px;
 }
 /*.line {
 	padding-top: 20px;
