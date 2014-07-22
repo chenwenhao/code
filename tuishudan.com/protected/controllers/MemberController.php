@@ -234,12 +234,26 @@ class MemberController extends MyController
 	}
 
 	/**
-	 * 用户加书
+	 * 用户加书 - 显示
 	 */
 	public function actionBook_add()
 	{
 		if (! $this->userinfo) {
-			$this->redirect('/');
+			echo '<script>alert("请先登录");window.location.href="/";</script>';
+		}
+
+		$this->pageTitle = '推书单 - 用户加书';
+		$this->css = 'book_add';
+		$this->render('book_add');
+	}
+
+	/**
+	 * 用户加书 - 提交
+	 */
+	public function actionAdd_book_submit()
+	{
+		if (! $this->userinfo) {
+			$this->jsonp(false, '请先登录');
 		}
 
 		// 参数
@@ -249,15 +263,16 @@ class MemberController extends MyController
 		$intro = trim(Yii::app()->request->getParam('intro'));
 
 		// 提交
-		if ($is_submit) {
+		if ($is_submit)
+		{
 			if(! $book_name) {
-				$this->alert('书名不能为空');
+				$this->jsonp(false, '书名不能为空');
 			}
 
 			// 查询书本是否已添加过
 			$exsit = Books::model()->getBookByName($book_name);
 			if ($exsit) {
-				$this->alert('书本已添加');
+				$this->jsonp(false, '书本已添加');
 			}
 
 			// 入库
@@ -266,14 +281,23 @@ class MemberController extends MyController
 			$book->from = $url;
 			$book->intro = $intro;
 			$book->uid = $this->userinfo->id;
-			if ($book->save()) {
-				$this->alert('添加成功，请等待审核');
+			if ($book->save())
+			{
+				$this->jsonp(true, '添加成功，请等待审核');
 			}
 		}
+	}
 
-		$this->pageTitle = '推书单 - 用户加书';
-		$this->css = 'book_add';
-		$this->render('book_add');
+	/**
+	 * 检查书名是否存在
+	 */
+	public function actionCheck_book_name()
+	{
+		$book_name = trim(Yii::app()->request->getParam('book_name'));
+		$exsit = Books::model()->getBookByName($book_name);
+		if ($exsit) {
+			$this->jsonp(false, '书本已添加');
+		}
 	}
 
 	/**
@@ -282,7 +306,7 @@ class MemberController extends MyController
 	public function actionMybook()
 	{
 		if (!$this->userinfo) {
-			$this->alert('请先登录');
+			echo '<script>alert("请先登录");window.location.href="/";</script>';die;
 		}
 		
 		$page = intval(Yii::app()->request->getParam('page', 1)) - 1;
@@ -294,11 +318,12 @@ class MemberController extends MyController
 
 		$cdb = new CDbCriteria();
 		if ($like == 'yes') {
-			$cdb->condition = "status = 2";
+			$cdb->addCondition("status = 2");
 		}
 		if ($like == 'no') {
-			$cdb->condition = "status = 1";
+			$cdb->addCondition("status = 1");
 		}
+		$cdb->addCondition("uid = ". $this->userinfo->id);
 
 		// 分页
 		$count = User_book::model()->count($cdb);
