@@ -38,7 +38,17 @@ if($this->css)
   }
   ?>
   
-  <div class="menu"><img src="/images/trigon.png" class="current"/><img src="/images/hui.png" class="fsb_font_1"><span class="fsb_font">封神榜</span></div>
+  <div class="menu">
+  <?php
+  if ($this->css == 'mybook' || $this->css == 'book_add') {
+    echo '<img src="/images/trigon.png" class="current_addbook"/><img src="/images/hui.png" class="addbook_bj">';
+    echo '<span class="add_book"><a href="/member/book_add">加书</a></span>';
+  } else {
+    echo '<img src="/images/trigon.png" class="current"/><img src="/images/hui.png" class="fsb_font_1">';
+    echo '<span class="fsb_font">封神榜</span>';
+  }
+  ?>
+  </div>
 </div>
 <?php echo $content?>
 <div id="clear_both"></div>

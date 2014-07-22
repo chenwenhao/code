@@ -149,6 +149,25 @@ h2 {
 	font-weight: 200px;
 	color: #fff;
 }
+.add_book a {
+	position: relative;
+	top: 3px;
+	left: 356px;
+	font-weight: bold;
+	color: #fff;
+	text-decoration: none;
+}
+.current_addbook {
+	position: relative ;
+	top: -23px;
+	left: 454px;
+	clear: both;
+}
+.addbook_bj {
+	position: relative;
+	top: 8px;
+	left: 406px;
+}
 #clear_both {
 	clear:both;
 }

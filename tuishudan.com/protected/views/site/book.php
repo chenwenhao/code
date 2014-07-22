@@ -17,7 +17,7 @@
 				}
 				?></div>
 				</dd>
-				<!-- <dd>主角：</dd> -->
+				<dd>主角：<?php echo $book->lead?></dd>
 				<dd>来自：起点</dd>	
 				<dd><?php echo Yii::app()->params['book_status'][$book->status]?> <!-- (2007) --></dd>
 			</dl>
