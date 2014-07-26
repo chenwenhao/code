@@ -43,6 +43,10 @@ if($this->css)
   if ($this->css == 'mybook' || $this->css == 'book_add') {
     echo '<img src="/images/trigon.png" class="current_addbook"/><img src="/images/hui.png" class="addbook_bj">';
     echo '<span class="add_book"><a href="/member/book_add">加书</a></span>';
+    echo '<img src="/images/hui.png" class="addbook_bj">';
+    echo '<span class="add_book"><a href="/member/mybook?like=mid">在看</a></span>';
+      echo '<img src="/images/hui.png" class="addbook_bj">';
+      echo '<span class="add_book"><a href="/member/mybook?like=yes">看过</a></span>';
   } else {
     echo '<img src="/images/trigon.png" class="current"/><img src="/images/hui.png" class="fsb_font_1">';
     echo '<span class="fsb_font">封神榜</span>';

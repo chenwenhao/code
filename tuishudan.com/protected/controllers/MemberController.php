@@ -323,7 +323,10 @@ class MemberController extends MyController
 		if ($like == 'no') {
 			$cdb->addCondition("status = 1");
 		}
-		$cdb->addCondition("uid = ". $this->userinfo->id);
+        if ($like == 'mid') {
+            $cdb->addCondition("score = 0");
+        }
+		//$cdb->addCondition("uid = ". $this->userinfo->id);
 
 		// 分页
 		$count = User_book::model()->count($cdb);

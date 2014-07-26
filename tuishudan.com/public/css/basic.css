@@ -144,15 +144,15 @@ h2 {
 }
 .fsb_font {
 	position: relative;
-	top: 3px;
+	top: 2px;
 	left: 247px;
 	font-weight: 200px;
 	color: #fff;
 }
 .add_book a {
 	position: relative;
-	top: 3px;
-	left: 356px;
+	top: 2px;
+	left: 256px;
 	font-weight: bold;
 	color: #fff;
 	text-decoration: none;
@@ -166,7 +166,7 @@ h2 {
 .addbook_bj {
 	position: relative;
 	top: 8px;
-	left: 406px;
+	left: 306px;
 }
 #clear_both {
 	clear:both;
