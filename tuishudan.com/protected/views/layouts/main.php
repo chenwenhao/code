@@ -38,7 +38,7 @@ if($this->css)
   }
   ?>
   
-  <div class="menu">
+  <!-- <div class="menu">
   <?php
   if ($this->css == 'mybook' || $this->css == 'book_add') {
     echo '<img src="/images/trigon.png" class="current_addbook"/><img src="/images/hui.png" class="addbook_bj">';
@@ -52,8 +52,41 @@ if($this->css)
     echo '<span class="fsb_font">封神榜</span>';
   }
   ?>
-  </div>
+  </div> -->
 </div>
+<div class="menu">
+    <ul>
+      <?php
+      if($this->css == 'mybook' || $this->css == 'book_add')
+      {
+        echo '<li class="width20 choice_at"></li>';
+        if($this->action == 'add')
+        {
+          echo '<li class="current_choice width55" style="left:286px">加书</li>';
+          echo '<li class="current_txt width55" style="left:306px"><a href="/member/mybook?like=mid">在看</a></li>';
+          echo '<li class="current_txt width55" style="left:326px"><a href="/member/mybook?like=yes">看过</a></li>';
+        }
+        if($this->action == 'mid')
+        {
+          echo '<li class="current_txt width55" style="left:286px"><a href="/member/book_add">加书</a></li>';
+          echo '<li class="current_choice width55" style="left:306px">在看</li>';
+          echo '<li class="current_txt width55" style="left:326px"><a href="/member/mybook?like=yes">看过</a></li>';
+        }
+        if($this->action == 'yes' || $this->action == 'no')
+        {
+          echo '<li class="current_txt width55" style="left:286px"><a href="/member/book_add">加书</a></li>';
+          echo '<li class="current_txt width55" style="left:306px"><a href="/member/mybook?like=mid">在看</a></li>';
+          echo '<li class="current_choice width55" style="left:326px">看过</li>';
+        }
+      }
+      else
+      {
+        echo '<li class="width20 choice_at_index"></li>';
+        echo '<li class="current_choice_index width55" style="left:279px">封神榜</li>';
+      }
+      ?>
+    </ul>
+  </div>
 <?php echo $content?>
 <div id="clear_both"></div>
 <div style="margin-top: 60px;"><img src="/images/line.png"></div>

@@ -4,7 +4,7 @@
 	width: 680px;
 	height: auto;
 	float: left;
-	margin-top: 80px;
+	margin-top: 40px;
 }
 .title {
 	font-size: 28px;
@@ -152,7 +152,7 @@
 #right {
 	width: 260px;
 	float: right;
-	margin-top: 130px;
+	margin-top: 90px;
 	background-color: #feead8;
 }
 #right dl {

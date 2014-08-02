@@ -5,6 +5,7 @@
  */
 class MemberController extends MyController
 {
+	public $action = '';
 	public function init()
 	{
 		$this->userinfo = $this->getUserinfo();
@@ -242,6 +243,7 @@ class MemberController extends MyController
 			echo '<script>alert("请先登录");window.location.href="/";</script>';
 		}
 
+		$this->action = 'add';
 		$this->pageTitle = '推书单 - 用户加书';
 		$this->css = 'book_add';
 		$this->render('book_add');
@@ -319,12 +321,15 @@ class MemberController extends MyController
 		$cdb = new CDbCriteria();
 		if ($like == 'yes') {
 			$cdb->addCondition("status = 2");
+			$this->action = 'yes';
 		}
 		if ($like == 'no') {
 			$cdb->addCondition("status = 1");
+			$this->action = 'no';
 		}
         if ($like == 'mid') {
             $cdb->addCondition("status = 0");
+            $this->action = 'mid';
         }
 		$cdb->addCondition("uid = ". $this->userinfo->id);
 

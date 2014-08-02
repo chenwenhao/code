@@ -125,12 +125,77 @@ h2 {
 .login_on span {
 	line-height: 30px;
 }
-.menu {
+/*.menu {
 	clear: both;
 	width: 980px;
 	background-image: url('/images/menu.png');
 	height: 41px;
+}*/
+.menu {
+	width: 980px;
+	height: 41px;
+	background: url(/images/menu.png);
 }
+.menu li {
+	list-style-type:none;
+	float:left;
+	margin-left: 18px;
+}
+.menu li a {
+	text-decoration: none;
+	color: #000;
+}
+.choice_at {
+	position: relative;
+	background: url(/images/trigon.png);
+	top: -7px;
+	left: 435px;
+	z-index: 99999;
+	height: 7px;
+	
+}
+.choice_at_index {
+	position: relative;
+	background: url(/images/trigon.png);
+	top: -7px;
+	left: 335px;
+	z-index: 99999;
+	height: 7px;
+	
+}
+.current_choice {
+	position: relative;
+	height:23px;
+	background: url(/images/hui.png);
+	background-size:100% 100%; 
+	line-height: 23px;
+	text-align:center;
+	font-weight: bold;
+	color: #fff;
+	top: 8px;
+}
+.current_choice_index {
+	position: relative;
+	height:23px;
+	background: url(/images/hui.png);
+	background-size:100% 100%; 
+	line-height: 23px;
+	text-align:center;
+	font-weight: bold;
+	color: #fff;
+	margin-left: 59px;
+	top: 8px;
+}
+.current_txt {
+	position: relative;
+	text-align:center;
+	line-height: 41px;
+	width:75px;
+	height: 41px;
+}
+.width20 {width: 20px;}
+.width55 {width: 55px;}
+.width95 {width: 95px;}
 .current {
 	position: relative ;
 	top: -23px;
