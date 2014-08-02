@@ -328,9 +328,9 @@ class MemberController extends MyController
 			$cdb->addCondition("status = 1");
 		}
         if ($like == 'mid') {
-            $cdb->addCondition("score = 0");
+            $cdb->addCondition("status = 0");
         }
-		//$cdb->addCondition("uid = ". $this->userinfo->id);
+		$cdb->addCondition("uid = ". $this->userinfo->id);
 
 		// 分页
 		$count = User_book::model()->count($cdb);
