@@ -16,7 +16,7 @@
 }
 .book {
 	float: right;
-	margin-top: 30px;
+	padding-top:15px;
 }
 .book a {
 	text-decoration: none;

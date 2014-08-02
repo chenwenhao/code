@@ -4,12 +4,14 @@
 	if($like == 'yes'){echo '我喜欢的书';}
 	if($like == 'no'){echo '烂书';}
 	?>
-</span><span class="f2">这是我们失去的青春呐</span></p></div>
-<div style="margin-top: 20px;"><img src="/images/line.png" /></div>
+</span><span class="f2">这是我们失去的青春呐</span>
 <?php if($like != 'mid'):?>
-<div class="book"><a href="/member/mybook?like=yes"<?php if($like == 'yes'){echo ' style="color:#999;text-decoration:none;"';}?>>我喜欢的书</a> / 
-<a href="/member/mybook?like=no"<?php if($like == 'no'){echo ' style="color:#999;text-decoration:none;"';}?>>烂书</a></div>
+	<span class="book">
+<a href="/member/mybook?like=yes"<?php if($like == 'yes'){echo ' style="color:#999;text-decoration:none;"';}?>>我喜欢的书</a> / 
+<a href="/member/mybook?like=no"<?php if($like == 'no'){echo ' style="color:#999;text-decoration:none;"';}?>>烂书</a></span>
 <?php endif;?>
+</p></div>
+<div style="margin-top: 20px;"><img src="/images/line.png" /></div>
 <div id="main">
 <?php foreach($rows as $row):?>
 	<div class="list">
