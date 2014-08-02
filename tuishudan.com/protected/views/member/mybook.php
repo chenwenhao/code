@@ -14,13 +14,13 @@
 <?php foreach($rows as $row):?>
 	<div class="list">
 	    <div class="pic">
-	        <a title="<?php echo $row->book->name?>" target="_blank" href="/book/<?php echo $row->book_id?>.html">
+	        <a title="<?php echo $row->book->name?>" href="/book/<?php echo $row->book_id?>.html">
 	            <img src="<?php echo Yii::app()->params['cover_img_url'] . $row->book->cover_img?>" alt="<?php echo $row->book->name?>" height="150" width="120">
 	        </a>
 	    </div>
 	    <div class="content">
 	        <h3>
-	            <a title="<?php echo $row->book->name?>" target="_blank" class="top-title" href="/book/<?php echo $row->book_id?>.html"><?php echo $row->book->name?></a>
+	            <a title="<?php echo $row->book->name?>" class="top-title" href="/book/<?php echo $row->book_id?>.html"><?php echo $row->book->name?></a>
 	        </h3>
 	        <p>作者：跳舞</p>
 	        <p><span class="vote-star"><i style="width:<?php echo $row->score * 20?>%"></i></span></p>

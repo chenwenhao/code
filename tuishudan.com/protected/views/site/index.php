@@ -4,13 +4,13 @@
 <?php foreach($books as $key => $row):?>
 	<div class="fsb">
 	    <div class="pic">
-	        <a title="<?php echo $row->name?>" target="_blank" href="/book/<?php echo $row->id?>.html">
+	        <a title="<?php echo $row->name?>" href="/book/<?php echo $row->id?>.html">
 	            <img src="<?php echo Yii::app()->params['cover_img_url'] . $row->cover_img?>" alt="<?php echo $row->name?>" height="148" width="120">
 	        </a>
 	    </div>
 	    <div class="content">
 	        <h3>
-	            <a title="<?php echo $row->name?>" target="_blank" class="top-title" href="/book/<?php echo $row->id?>.html"><?php echo $row->name?></a>
+	            <a title="<?php echo $row->name?>" class="top-title" href="/book/<?php echo $row->id?>.html"><?php echo $row->name?></a>
 	        </h3>
 	        <dl>
 	            <dt>作者：<?php echo $row->author?></dt>
