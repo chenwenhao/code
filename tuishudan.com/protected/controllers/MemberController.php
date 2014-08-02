@@ -8,6 +8,10 @@ class MemberController extends MyController
 	public function init()
 	{
 		$this->userinfo = $this->getUserinfo();
+		if (isset($this->userinfo->name)) {
+			$this->userinfo->name = $this->cutStr($this->userinfo->name, 7);
+		}
+		
 	}
 
 	/**
