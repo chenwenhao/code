@@ -136,6 +136,8 @@ $default_conf = array(
 			0 => '连载',
 			1 => '完结',
 		),
+		'css' => 1,
+		'js' => 1,
 	),
 );
 if(file_exists(APP_ROOT . '/protected/config/config.php'))

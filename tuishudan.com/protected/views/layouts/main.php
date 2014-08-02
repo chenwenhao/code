@@ -6,14 +6,14 @@
 <meta property="qc:admins" content="26561317513054166375" />
 <link rel="shortcut icon" href="/images/favicon.ico" />
 <title><?php echo $this->pageTitle?></title>
-<link rel="stylesheet" type="text/css" href="/css/basic.css" />
+<link rel="stylesheet" type="text/css" href="/css/basic.css?<?php echo Yii::app()->params['css']?>" />
 <?php
 if($this->css)
 {
-  echo '<link rel="stylesheet" type="text/css" href="/css/'. $this->css .'.css" />';
+  echo '<link rel="stylesheet" type="text/css" href="/css/'. $this->css .'.css?'. Yii::app()->params['css'] .'" />';
 }
 ?>
-<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery.js?<?php echo Yii::app()->params['js']?>"></script>
 </head>
 <body>
 <div id="header">
@@ -89,7 +89,7 @@ $(function () {
 <?php
 if($this->js)
 {
-  echo '<script type="text/javascript" src="/js/'. $this->js .'.js"></script>';
+  echo '<script type="text/javascript" src="/js/'. $this->js .'.js?'. Yii::app()->params['js'] .'"></script>';
 }
 ?>
 <!-- baidu tongji -->
