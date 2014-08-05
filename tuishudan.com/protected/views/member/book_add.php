@@ -1,16 +1,16 @@
 <div class="fsb_title"><p><span class="f1">推书</span><span class="f2">让烂书滚蛋</span></p></div>
 <div style="margin-top: 20px;"><img src="/images/line.png" /></div>
 <div id="main">
+<div id="error_msg" style="color:red; font-size:14px; margin:5px 0 0 100px; width: 500px; height: 30px;"></div>
 	<form id="book_add_form" method="post" onsubmit="return false;">
 	<input type="hidden" name="is_submit" value="true" />
 	<dl>
 		<dd><span>书名</span><input id="book_name" type="text" name="book_name" class="text" /> <font color="red" id="err_msg">* 必填</font></dd>
 		<dd><span>地址</span><input type="text" name="url" class="text" /></dd>
-		<dd><span class="bc">补充</span><textarea rows="10" cols="50" name="intro"></textarea></dd>
+		<dd><span class="bc">补充</span><textarea rows="5" cols="30" name="intro"></textarea></dd>
 		<dd><input type="submit" value="提交" class="submit" id="book_add" /></dd>
 	</dl>
 	</form>
-	<span id="error_msg" style="color:red; font-size:12px;"></span>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
